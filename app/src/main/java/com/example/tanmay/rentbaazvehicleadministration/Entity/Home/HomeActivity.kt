@@ -10,11 +10,15 @@ class HomeActivity : AppCompatActivity() {
 
     private val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
         when (item.itemId) {
-            R.id.navigation_all_vehicles -> {
+            R.id.navigation_all_vehicles-> {
                 message.setText(R.string.title_all_vehicles)
                 return@OnNavigationItemSelectedListener true
             }
-            R.id.navigation_manage_sessions -> {
+            R.id.navigation_available -> {
+                message.setText(R.string.title_manage_sessions)
+                return@OnNavigationItemSelectedListener true
+            }
+            R.id.navigation_on_rent-> {
                 message.setText(R.string.title_manage_sessions)
                 return@OnNavigationItemSelectedListener true
             }
