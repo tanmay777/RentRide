@@ -12,8 +12,12 @@
         <activity
             android:name=".Entity.Home.HomeActivity"
             android:label="@string/app_name">
+
+        </activity>
+        <activity android:name=".Entity.Rent.RentActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

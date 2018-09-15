@@ -9,7 +9,7 @@
     android:layout_marginEnd="8dp"
     android:layout_marginStart="8dp"
     android:layout_marginTop="8dp"
-    app:cardElevation="3dp">
+    app:cardElevation="4dp">
 
     <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
@@ -25,6 +25,7 @@
             android:textColor="#000"
             android:textStyle="bold"
             app:layout_constraintEnd_toStartOf="@id/bike_number"
+            android:fontFamily="@font/proxima_nova_semibold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -38,6 +39,7 @@
             android:text="TN 02 0224"
             android:textColor="#000"
             android:textStyle="bold"
+            android:fontFamily="@font/proxima_nova_semibold"
             app:layout_constraintBaseline_toBaselineOf="@+id/bike_name"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/bike_name" />
@@ -50,7 +52,8 @@
             android:background="#ececec"
             app:layout_constraintEnd_toEndOf="@id/margin_end"
             app:layout_constraintStart_toStartOf="@id/margin_start"
-            app:layout_constraintTop_toBottomOf="@id/bike_number"></View>
+            app:layout_constraintTop_toBottomOf="@id/bike_number">
+        </View>
 
         <android.support.constraint.Guideline
             android:id="@+id/margin_start"
@@ -84,6 +87,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:gravity="center"
+            android:fontFamily="@font/proxima_nova_semibold"
             android:text="Rs 200/hr"
             android:textColor="#000"
             android:textSize="15sp"
@@ -99,6 +103,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:gravity="center"
+            android:fontFamily="@font/proxima_nova_semibold"
             android:text="Mon-Thu"
             android:textColor="#8c8c8c"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -116,7 +121,8 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@id/cost_weekend"
             app:layout_constraintStart_toEndOf="@id/cost_weekday"
-            app:layout_constraintTop_toBottomOf="@id/horizontal_line"></View>
+            app:layout_constraintTop_toBottomOf="@id/horizontal_line">
+        </View>
 
         <TextView
             android:id="@+id/cost_weekend"
@@ -124,6 +130,7 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:text="Rs 200/hr"
+            android:fontFamily="@font/proxima_nova_semibold"
             android:textColor="#000"
             android:textSize="15sp"
             android:textStyle="bold"
@@ -139,6 +146,7 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:text="Fri-Sun"
+            android:fontFamily="@font/proxima_nova_semibold"
             android:textColor="#8c8c8c"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

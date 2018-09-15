@@ -15,11 +15,11 @@ class HomeActivity : AppCompatActivity() {
                 return@OnNavigationItemSelectedListener true
             }
             R.id.navigation_available -> {
-                message.setText(R.string.title_manage_sessions)
+                message.setText(R.string.title_available)
                 return@OnNavigationItemSelectedListener true
             }
             R.id.navigation_on_rent-> {
-                message.setText(R.string.title_manage_sessions)
+                message.setText(R.string.title_on_rent)
                 return@OnNavigationItemSelectedListener true
             }
         }
