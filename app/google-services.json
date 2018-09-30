@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "912168693899",
+    "firebase_url": "https://rentbaaz-administration.firebaseio.com",
+    "project_id": "rentbaaz-administration",
+    "storage_bucket": "rentbaaz-administration.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:912168693899:android:793a76656bfa6256",
+        "android_client_info": {
+          "package_name": "com.example.tanmay.rentbaazvehicleadministration"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "912168693899-tafguq2ks7dbjapl6qcr44auc05m0n72.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.tanmay.rentbaazvehicleadministration",
+            "certificate_hash": "1681b16df1cd533a730788f89003d32df830647f"
+          }
+        },
+        {
+          "client_id": "912168693899-tb1qfs7p76dd1pjscql8bh9gnpq680dc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBeJIuu85eNAPmiZ-b0NbOMrf-giblwmjI"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "912168693899-tb1qfs7p76dd1pjscql8bh9gnpq680dc.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

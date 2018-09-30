@@ -33,3 +33,5 @@ class HomeActivity : AppCompatActivity() {
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
     }
 }
+
+//TODO: Add perimission mode for firestore database
