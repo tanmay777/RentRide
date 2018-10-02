@@ -40,6 +40,11 @@ class HomeActivity : AppCompatActivity() {
         //val currentUser = mAuth.currentUser
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
     }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        finishAffinity()
+    }
 }
 
 //TODO: Add perimission mode for firestore database

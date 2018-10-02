@@ -1,13 +1,9 @@
-package com.example.tanmay.rentbaazvehicleadministration.Entity.Login
+package com.example.tanmay.rentbaazvehicleadministration.Entity.AccountCreation
 
 import android.app.Activity
-import android.app.PendingIntent.getActivity
 import android.content.Intent
-import android.net.Uri
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.os.PersistableBundle
-import android.support.design.widget.Snackbar
 import android.text.Html
 import android.text.TextUtils
 import android.util.Log
@@ -21,14 +17,15 @@ import com.firebase.ui.auth.IdpResponse
 import com.google.firebase.FirebaseException
 import com.google.firebase.FirebaseTooManyRequestsException
 import com.google.firebase.auth.*
-import kotlinx.android.synthetic.main.activity_login.*
-import java.util.*
+import kotlinx.android.synthetic.main.activity_verify_account.*
 import java.util.concurrent.TimeUnit
 
-class LoginActivity : AppCompatActivity() {
+class VerifyAccountActivity : AppCompatActivity() {
 
     private val KEY_VERIFY_IN_PROGRESS = "key_verify_in_progress"
 
+    lateinit var phoneNum:String
+    
     lateinit var mAuth: FirebaseAuth
     lateinit var mCallbacks: PhoneAuthProvider.OnVerificationStateChangedCallbacks
     //mCallbacks are callbacks for the result of verifying the phone number.
@@ -39,12 +36,13 @@ class LoginActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_login)
+        setContentView(R.layout.activity_verify_account)
         //Start Initialize Auth
         mAuth = FirebaseAuth.getInstance()
+        phoneNum=intent.getStringExtra("phone_number")
         //End Initialize Auth
-
-        supportActionBar!!.title= Html.fromHtml("<font color=\"#a9a9a9\">Log In</font>")
+        otp_text.text=otp_text.text.toString()+phoneNum
+        supportActionBar!!.title= Html.fromHtml("<font color=\"#a9a9a9\">Verify Account</font>")
 
         initUI()
         initCallback()
@@ -53,26 +51,21 @@ class LoginActivity : AppCompatActivity() {
 
     override fun onStart() {
         super.onStart()
-        //Check if user is already signed in (non-null) and update UI accordingly.
-        val currentUser = mAuth.currentUser
-        if(currentUser!=null) {
-            startActivity(Intent(this, HomeActivity::class.java))
-        }
-        //[Start_Exclude]
-        if (mVerificationInProgress && validatePhoneNumber()) {
-            startPhoneNumberVerification("+91"+login_phone_number.text.toString())
-        }
-        //[End_Exclude]
+        startPhoneNumberVerification(phoneNum)
+
     }
     //[End on_start_check_user]
 
-    private fun initUI() {
-        login_button.setOnClickListener {
-            if (!validatePhoneNumber()) {
-                return@setOnClickListener
-            }
-            startPhoneNumberVerification("+91"+login_phone_number.text.toString())
+    override fun onResume() {
+        super.onResume()
+        //[Start_Exclude]
+        if (mVerificationInProgress) {
+            startPhoneNumberVerification(phoneNum)
         }
+        //[End_Exclude]
+    }
+
+    private fun initUI() {
 
         verify_button.setOnClickListener {
             val code = getVerficationCode()
@@ -82,8 +75,8 @@ class LoginActivity : AppCompatActivity() {
             }
             verifyPhoneNumberWithCode(mVerificationId!!.toString(), code)
         }
-        resend_button.setOnClickListener {
-            resendVerificationCode("+91"+login_phone_number.text.toString(), mResendToken)
+        resend_text.setOnClickListener {
+            resendVerificationCode(phoneNum, mResendToken)
         }
     }
 
@@ -148,8 +141,9 @@ class LoginActivity : AppCompatActivity() {
                         // Sign in success, update UI with the signed-in user's information
                         showSnackbar("Sign in with Credentials: successful")
                         val user = task.result.user
-                        var intent:Intent=Intent(this, RegisterActivity::class.java)
-                        intent.putExtra("phone_number",login_phone_number.text.toString())
+                        val intent:Intent=Intent(this, RegisterActivity::class.java)
+                        Toast.makeText(applicationContext,phoneNum,Toast.LENGTH_SHORT).show()
+                        intent.putExtra("phoneNum",phoneNum)
                         startActivity(intent)
                     } else {
                         // Sign in failed, display a message and update the UI
@@ -175,7 +169,7 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun getVerficationCode(): String {
-        val code=verificartion_code.text.toString()
+        val code=ver_code_one.text.toString()+ver_code_two.text.toString()+ver_code_three.text.toString()+ver_code_four.text.toString()+ver_code_five.text.toString()+ver_code_six.text.toString()
         return code
     }
 
@@ -196,15 +190,7 @@ class LoginActivity : AppCompatActivity() {
     }
 
 
-    private fun validatePhoneNumber(): Boolean {
-        val phoneNumber = "+91"+login_phone_number.text.toString()
-        if (TextUtils.isEmpty(phoneNumber)) {
-            showSnackbar("Invalid Phone Number")
-            return false
-        }
-        //TODO: Have better validation of phone algo and also use text layout to show error
-        return true
-    }
+
 
     companion object {
         const val RC_SIGN_IN = 123
@@ -255,7 +241,7 @@ class LoginActivity : AppCompatActivity() {
     }
     
     fun showSnackbar(message:String){
-        Log.e("LoginActivity",message)
+        Log.e("VerifyAccountActivity",message)
         //Snackbar.make(findViewById(android.R.id.content), message, Snackbar.LENGTH_SHORT).show()
     }
 }

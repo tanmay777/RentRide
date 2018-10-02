@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Entity.AccountCreation.CreateAccountActivity">
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/image_view_message_out"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="50dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="50dp"
+            android:layout_marginBottom="50dp"
+            android:background="@drawable/type"
+            app:layout_constraintDimensionRatio="H,1:1"
+            app:layout_constraintEnd_toEndOf="@id/right_guideline_for_imageview"
+            app:layout_constraintStart_toStartOf="@id/left_guideline_for_imageview"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/enter_mobile_details"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:fontFamily="@font/proxima_nova_semibold"
+            android:gravity="center"
+            android:text="Enter the OTP received on\nyour mobile"
+            android:textColor="#545454"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/image_view_message_out" />
+
+        <TextView
+            android:id="@+id/otp_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:fontFamily="@font/proxima_nova_semibold"
+            android:gravity="center"
+            android:text="We have send the otp on \n"
+            android:textColor="#8c8c8c"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/enter_mobile_details" />
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/layout_ver_code_one"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:padding="8dp"
+            app:layout_constraintEnd_toStartOf="@id/layout_ver_code_two"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/otp_text">
+
+            <EditText
+                android:id="@+id/ver_code_one"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="phone"
+                android:maxLength="1"
+                android:nextFocusRight="@id/ver_code_two" />
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/layout_ver_code_two"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:padding="8dp"
+            app:layout_constraintEnd_toStartOf="@id/layout_ver_code_three"
+            app:layout_constraintStart_toEndOf="@id/layout_ver_code_one"
+            app:layout_constraintTop_toTopOf="@id/layout_ver_code_one">
+
+            <EditText
+                android:id="@+id/ver_code_two"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="phone"
+                android:maxLength="1"
+                android:nextFocusRight="@id/ver_code_three" />
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/layout_ver_code_three"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:padding="8dp"
+            app:layout_constraintEnd_toStartOf="@id/layout_ver_code_four"
+            app:layout_constraintStart_toEndOf="@id/layout_ver_code_two"
+            app:layout_constraintTop_toTopOf="@id/layout_ver_code_two">
+
+            <EditText
+                android:id="@+id/ver_code_three"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="phone"
+                android:maxLength="1"
+                android:nextFocusRight="@id/ver_code_four" />
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/layout_ver_code_four"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:padding="8dp"
+            app:layout_constraintEnd_toStartOf="@id/layout_ver_code_five"
+            app:layout_constraintStart_toEndOf="@id/layout_ver_code_three"
+            app:layout_constraintTop_toTopOf="@id/layout_ver_code_three">
+
+            <EditText
+                android:id="@+id/ver_code_four"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="phone"
+                android:maxLength="1" />
+        </android.support.design.widget.TextInputLayout>
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/layout_ver_code_five"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:padding="8dp"
+            app:layout_constraintEnd_toStartOf="@id/layout_ver_code_six"
+            app:layout_constraintStart_toEndOf="@id/layout_ver_code_four"
+            app:layout_constraintTop_toTopOf="@id/layout_ver_code_four">
+
+            <EditText
+                android:id="@+id/ver_code_five"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="phone"
+                android:maxLength="1" />
+        </android.support.design.widget.TextInputLayout>
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/layout_ver_code_six"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:padding="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/layout_ver_code_five"
+            app:layout_constraintTop_toTopOf="@id/layout_ver_code_five">
+
+            <EditText
+                android:id="@+id/ver_code_six"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="phone"
+                android:maxLength="1" />
+        </android.support.design.widget.TextInputLayout>
+
+        <TextView
+            app:layout_constraintTop_toBottomOf="@id/layout_ver_code_one"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="If you didn't receive the code!"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            android:layout_margin="8dp"
+            android:id="@+id/code_not_recevied_text"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/resend_text"/>
+
+        <TextView
+            app:layout_constraintTop_toTopOf="@id/code_not_recevied_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Resend"
+            android:textColor="@color/colorAccent"
+            android:textStyle="bold"
+            android:id="@+id/resend_text"
+            app:layout_constraintStart_toEndOf="@id/code_not_recevied_text"
+            app:layout_constraintEnd_toEndOf="parent"/>
+        <ImageButton
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/ic_right_arrow"
+            android:scaleType="fitCenter"
+            android:id="@+id/verify_button"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/code_not_recevied_text" />
+
+        <android.support.constraint.Guideline
+            android:id="@+id/left_guideline_for_imageview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.20" />
+
+        <android.support.constraint.Guideline
+            android:id="@+id/right_guideline_for_imageview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.80" />
+
+    </android.support.constraint.ConstraintLayout>
+</ScrollView>

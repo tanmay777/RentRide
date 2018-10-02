@@ -27,9 +27,9 @@ class RegisterActivity : AppCompatActivity() {
     override fun onStart() {
         super.onStart()
         completed_button.setOnClickListener {
-            val user = User(first_name.text.toString(), last_name.text.toString(), intent.getStringExtra("phone_number"), organization_name.text.toString(), address.text.toString())
+            val user = User(first_name.text.toString(), last_name.text.toString(), intent.getStringExtra("phoneNum"), organization_name.text.toString(), address.text.toString())
             try {
-                userDocumentReference.document(intent.getStringExtra("phone_number")).set(user).addOnSuccessListener {
+                userDocumentReference.document(intent.getStringExtra("phoneNum")).set(user).addOnSuccessListener {
                     void:Void?->Toast.makeText(this, "Successfully uploaded to the database", Toast.LENGTH_SHORT).show()
                     startActivity(Intent(this,HomeActivity::class.java))
                 }.addOnFailureListener { exception: java.lang.Exception ->
