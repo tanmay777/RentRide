@@ -13,6 +13,7 @@ import android.text.TextUtils
 import android.util.Log
 import android.widget.Toast
 import com.example.tanmay.rentbaazvehicleadministration.Entity.Home.HomeActivity
+import com.example.tanmay.rentbaazvehicleadministration.Entity.Register.RegisterActivity
 import com.example.tanmay.rentbaazvehicleadministration.R
 import com.firebase.ui.auth.AuthUI
 import com.firebase.ui.auth.ErrorCodes
@@ -147,7 +148,9 @@ class LoginActivity : AppCompatActivity() {
                         // Sign in success, update UI with the signed-in user's information
                         showSnackbar("Sign in with Credentials: successful")
                         val user = task.result.user
-                        startActivity(Intent(this, HomeActivity::class.java))
+                        var intent:Intent=Intent(this, RegisterActivity::class.java)
+                        intent.putExtra("phone_number",login_phone_number.text.toString())
+                        startActivity(intent)
                     } else {
                         // Sign in failed, display a message and update the UI
                         showSnackbar("Sign in with Credentials: failed")
