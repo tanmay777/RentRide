@@ -3,10 +3,14 @@ package com.example.tanmay.rentbaazvehicleadministration.Entity.Home
 import android.os.Bundle
 import android.support.design.widget.BottomNavigationView
 import android.support.v7.app.AppCompatActivity
+import android.text.Html
+import android.widget.Toast
 import com.example.tanmay.rentbaazvehicleadministration.R
+import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_home.*
 
 class HomeActivity : AppCompatActivity() {
+    lateinit var mAuth: FirebaseAuth
 
     private val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
         when (item.itemId) {
@@ -26,10 +30,14 @@ class HomeActivity : AppCompatActivity() {
         false
     }
 
+    var x:String="abc";
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
-
+        supportActionBar!!.title= Html.fromHtml("<font color=\"#a9a9a9\">Home</font>")
+        //mAuth = FirebaseAuth.getInstance()
+        //val currentUser = mAuth.currentUser
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
     }
 }
