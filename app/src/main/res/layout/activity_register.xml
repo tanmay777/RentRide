@@ -50,7 +50,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ems="10"
-                    android:text="Tanmay"
                     android:fontFamily="@font/proxima_nova_semibold"
                     android:hint="First Name"
                     android:textSize="15sp" />
@@ -74,7 +73,6 @@
                     android:fontFamily="@font/proxima_nova_semibold"
                     android:hint="Last Name"
                     android:textSize="15sp"
-                    android:text="Jha"
                     />
 
             </android.support.design.widget.TextInputLayout>
@@ -93,7 +91,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ems="10"
-                    android:text="abc"
+
                     android:fontFamily="@font/proxima_nova_semibold"
                     android:hint="Organization Name"
                     android:textSize="15sp" />
@@ -116,7 +114,7 @@
                     android:ems="10"
                     android:fontFamily="@font/proxima_nova_semibold"
                     android:hint="Address"
-                    android:text="1zb"
+
                     android:textSize="15sp" />
             </android.support.design.widget.TextInputLayout>
 

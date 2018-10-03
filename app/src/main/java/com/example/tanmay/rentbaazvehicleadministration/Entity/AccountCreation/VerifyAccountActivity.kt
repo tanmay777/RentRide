@@ -8,7 +8,6 @@ import android.text.Html
 import android.text.TextUtils
 import android.util.Log
 import android.widget.Toast
-import com.example.tanmay.rentbaazvehicleadministration.Entity.Home.HomeActivity
 import com.example.tanmay.rentbaazvehicleadministration.Entity.Register.RegisterActivity
 import com.example.tanmay.rentbaazvehicleadministration.R
 import com.firebase.ui.auth.AuthUI
@@ -140,7 +139,7 @@ class VerifyAccountActivity : AppCompatActivity() {
                     if (task.isSuccessful) {
                         // Sign in success, update UI with the signed-in user's information
                         showSnackbar("Sign in with Credentials: successful")
-                        val user = task.result.user
+                        //val user = task.result.user
                         val intent:Intent=Intent(this, RegisterActivity::class.java)
                         Toast.makeText(applicationContext,phoneNum,Toast.LENGTH_SHORT).show()
                         intent.putExtra("phoneNum",phoneNum)

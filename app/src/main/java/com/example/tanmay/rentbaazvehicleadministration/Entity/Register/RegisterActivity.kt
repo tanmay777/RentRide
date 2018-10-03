@@ -8,9 +8,7 @@ import android.widget.Toast
 import com.example.tanmay.rentbaazvehicleadministration.Entity.Home.HomeActivity
 import com.example.tanmay.rentbaazvehicleadministration.R
 import kotlinx.android.synthetic.main.activity_register.*
-import com.example.tanmay.rentbaazvehicleadministration.Entity.Register.User
 import com.google.firebase.firestore.CollectionReference
-import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.FirebaseFirestore
 
 class RegisterActivity : AppCompatActivity() {
@@ -31,7 +29,7 @@ class RegisterActivity : AppCompatActivity() {
             try {
                 userDocumentReference.document(intent.getStringExtra("phoneNum")).set(user).addOnSuccessListener {
                     void:Void?->Toast.makeText(this, "Successfully uploaded to the database", Toast.LENGTH_SHORT).show()
-                    startActivity(Intent(this,HomeActivity::class.java))
+                    startActivity(Intent(this, HomeActivity::class.java))
                 }.addOnFailureListener { exception: java.lang.Exception ->
                     Toast.makeText(this, exception.toString(), Toast.LENGTH_SHORT).show()
                 }
