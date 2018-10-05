@@ -47,26 +47,15 @@ class HomeActivity : AppCompatActivity() {
         tab1.nav_label.text = "Available"
         tab1.nav_label.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_car,0,0,0)
         tab1.nav_label.scaleY=-1f;
-        //tab1.nav_label.alpha=.5f
         tab_layout.getTabAt(1)!!.setCustomView(tab1)
         tab_layout.getTabAt(1)!!.customView?.alpha=.5f
 
         val tab2 = LayoutInflater.from(this).inflate(R.layout.nav_tab, null) as LinearLayout
         tab2.nav_label.text = "On Rent"
         tab2.nav_label.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_car,0,0,0)
-        //tab2.nav_label.alpha=.5f
         tab2.nav_label.scaleY=-1f;
         tab_layout.getTabAt(2)!!.setCustomView(tab2)
         tab_layout.getTabAt(2)!!.customView?.alpha=.5f
-
-        /*tab_layout.addTab(tab_layout.newTab().setText("All Vehicles").setIcon(R.drawable.ic_car))
-        val tab2=tab_layout.newTab().setText("Available").setIcon(R.drawable.ic_car)
-        tab2.icon?.alpha=128
-        tab_layout.addTab(tab2)
-        val tab3=tab_layout.newTab().setText("On Rent").setIcon(R.drawable.ic_car)
-        tab3.icon?.alpha=128
-        tab_layout.addTab(tab3)
-       */
 
         val adapter = HomeTabPagerAdapter(supportFragmentManager, tab_layout.tabCount)
 

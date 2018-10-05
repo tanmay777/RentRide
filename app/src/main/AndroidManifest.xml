@@ -12,7 +12,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".Entity.Rent.RentActivity" />
-        <activity android:name=".Entity.AccountCreation.VerifyAccountActivity"></activity>
+        <activity android:name=".Entity.AccountCreation.VerifyAccountActivity">
+        </activity>
         <activity android:name=".Entity.Register.RegisterActivity" />
         <activity android:name=".Entity.AccountCreation.CreateAccountActivity">
         </activity>
