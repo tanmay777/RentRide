@@ -24,10 +24,23 @@
             android:text="Beneli"
             android:textColor="#000"
             android:textStyle="bold"
-            app:layout_constraintEnd_toStartOf="@id/bike_number"
+            app:layout_constraintEnd_toStartOf="@id/bike_vendor_organization"
             android:fontFamily="@font/proxima_nova_semibold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textColor="#000"
+            android:textStyle="bold"
+            android:id="@+id/bike_vendor_organization"
+            android:fontFamily="@font/proxima_nova_semibold"
+            android:text="Raja Travels"
+            android:gravity="center"
+            app:layout_constraintStart_toEndOf="@id/bike_name"
+            app:layout_constraintEnd_toStartOf="@id/bike_number"
+            app:layout_constraintBaseline_toBaselineOf="@+id/bike_name"/>
 
         <TextView
             android:id="@+id/bike_number"
@@ -40,9 +53,9 @@
             android:textColor="#000"
             android:textStyle="bold"
             android:fontFamily="@font/proxima_nova_semibold"
-            app:layout_constraintBaseline_toBaselineOf="@+id/bike_name"
+            app:layout_constraintBaseline_toBaselineOf="@+id/bike_vendor_organization"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/bike_name" />
+            app:layout_constraintStart_toEndOf="@id/bike_vendor_organization" />
 
         <View
             android:id="@+id/horizontal_line"

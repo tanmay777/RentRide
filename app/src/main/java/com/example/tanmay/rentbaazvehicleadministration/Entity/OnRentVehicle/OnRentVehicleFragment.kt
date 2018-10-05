@@ -1,4 +1,5 @@
-package com.example.tanmay.rentbaazvehicleadministration.Entity.Home
+package com.example.tanmay.rentbaazvehicleadministration.Entity.OnRentVehicle
+
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
@@ -15,14 +16,15 @@ private const val ARG_PARAM2 = "param2"
 
 /**
  * A simple [Fragment] subclass.
+ *
  */
-
-class AllVehicleFragment : Fragment() {
+class OnRentVehicleFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_all_vehicle, container, false)
+        return inflater.inflate(R.layout.fragment_on_rent_vehicle, container, false)
     }
+
 
 }

@@ -1,4 +1,4 @@
-package com.example.tanmay.rentbaazvehicleadministration.Entity.Home
+package com.example.tanmay.rentbaazvehicleadministration.Entity.AvailableVehicle
 
 
 import android.os.Bundle
