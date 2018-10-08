@@ -108,7 +108,7 @@ class RentActivity : AppCompatActivity() {
             else {
                 if((extend_time_minutes.text.toString().toInt() + 1)>=60)
                 {
-                    if((extend_time_hours.text.toString().toInt() + 1)>24){
+                    if((extend_time_hours.text.toString().toInt() + 1)>=24){
                         extend_time_hours.text ="00"
                     }
                     else
@@ -119,13 +119,16 @@ class RentActivity : AppCompatActivity() {
                     extend_time_minutes.text = (extend_time_minutes.text.toString().toInt() + 1).toString()
             }
         }
+
         extend_time_minus_sign.setOnClickListener {
-            if(hoursFlag)
-                if((extend_time_hours.text.toString().toInt()-1)>=0)
-                    extend_time_hours.text=(extend_time_hours.text.toString().toInt()-1).toString()
-            else
-                if((extend_time_minutes.text.toString().toInt()-1)>0)
-                    extend_time_minutes.text=(extend_time_minutes.text.toString().toInt()-1).toString()
+            if(hoursFlag) {
+                if ((extend_time_hours.text.toString().toInt() - 1) >= 0)
+                    extend_time_hours.text = (extend_time_hours.text.toString().toInt() - 1).toString()
+            }
+            else {
+                if ((extend_time_minutes.text.toString().toInt() - 1) >= 0)
+                    extend_time_minutes.text = (extend_time_minutes.text.toString().toInt() - 1).toString()
+            }
         }
 
         extend_time_hours.setOnClickListener {
