@@ -43,7 +43,7 @@ class AllVehicleFragment : Fragment() {
         fragmentView.recycler_view_all_vehicle.layoutManager=LinearLayoutManager(fragmentView.context)
         //create the root reference of your Firestore database
         val rootRef=FirebaseFirestore.getInstance()
-        val query=rootRef!!.collection("all_vehicles") .orderBy("vehicle_name",Query.Direction.ASCENDING)
+        val query=rootRef.collection("all_vehicles") .orderBy("vehicle_name",Query.Direction.ASCENDING)
         val options = FirestoreRecyclerOptions.Builder<AllVehicleModel>().setQuery(query,AllVehicleModel::class.java).build()
         allVehicleFirestoreRecyclerAdapter=AllVehicleFirestoreRecyclerAdapter(options)
         fragmentView.recycler_view_all_vehicle.adapter=allVehicleFirestoreRecyclerAdapter
