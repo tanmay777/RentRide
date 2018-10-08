@@ -187,7 +187,7 @@
                     android:id="@+id/journey_detail_text"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/journey_detail_background"
+                    android:background="@drawable/card_text_background"
                     android:drawableLeft="@drawable/ic_car"
                     android:fontFamily="@font/proxima_nova_semibold"
                     android:gravity="center|left"
@@ -195,7 +195,8 @@
                     android:textColor="#000"
                     android:textStyle="bold"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent" />
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"/>
 
                 <android.support.design.widget.TextInputLayout
                     android:id="@+id/layout_pickup_date"
@@ -298,7 +299,7 @@
                     android:id="@+id/rentee_detail_text"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/journey_detail_background"
+                    android:background="@drawable/card_text_background"
                     android:drawableStart="@drawable/ic_rentee"
                     android:fontFamily="@font/proxima_nova_semibold"
                     android:gravity="center|start"

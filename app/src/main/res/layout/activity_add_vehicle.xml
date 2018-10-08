@@ -4,98 +4,174 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/rent_background"
     tools:context=".Entity.AddVehicles.AddVehicleActivity">
 
-    <android.support.design.widget.TextInputLayout
-        android:id="@+id/layout_vehicle_name"
-        android:layout_width="wrap_content"
+    <android.support.v7.widget.CardView
+        android:id="@+id/vehicle_info_card"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
-
-        <android.support.design.widget.TextInputEditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/proxima_nova_semibold"
-            android:ems="10"
-            android:id="@+id/vehicle_name"
-            android:hint="Vehicle Name"
-            android:textSize="15sp" />
-    </android.support.design.widget.TextInputLayout>
-
-    <android.support.design.widget.TextInputLayout
-        android:id="@+id/layout_vehicle_number"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        app:layout_constraintTop_toBottomOf="@id/layout_vehicle_name"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
-
-        <android.support.design.widget.TextInputEditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:id="@+id/vehicle_number"
-            android:fontFamily="@font/proxima_nova_semibold"
-            android:hint="Vehicle Number"
-            android:textSize="15sp" />
-    </android.support.design.widget.TextInputLayout>
-
-    <android.support.design.widget.TextInputLayout
-        android:id="@+id/layout_weekend_cost"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        app:layout_constraintTop_toBottomOf="@id/layout_vehicle_number"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
-
-        <android.support.design.widget.TextInputEditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/proxima_nova_semibold"
-            android:ems="10"
-            android:id="@+id/weekend_cost"
-            android:hint="Weekend Cost"
-            android:textSize="15sp" />
-    </android.support.design.widget.TextInputLayout>
-
-    <android.support.design.widget.TextInputLayout
-        android:id="@+id/layout_weekday_cost"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        app:layout_constraintTop_toBottomOf="@id/layout_weekend_cost"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
-
-        <android.support.design.widget.TextInputEditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/proxima_nova_semibold"
-            android:hint="Weekday cost"
-            android:id="@+id/weekday_cost"
-            android:ems="10"
-            android:textSize="15sp" />
-    </android.support.design.widget.TextInputLayout>
-
-    <Button
-        android:layout_width="wrap_content"
+        android:layout_margin="30dp"
+        app:cardCornerRadius="5dp"
+        app:cardElevation="5dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="10dp">
+
+            <TextView
+                android:id="@+id/vehicle_info_text"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/card_text_background"
+                android:drawableLeft="@drawable/ic_car"
+                android:fontFamily="@font/proxima_nova_semibold"
+                android:gravity="center|left"
+                android:text="Bike Details"
+                android:textColor="#000"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/layout_vehicle_name"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                app:layout_constraintEnd_toStartOf="@id/layout_vehicle_number"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/vehicle_info_text">
+
+                <android.support.design.widget.TextInputEditText
+                    android:id="@+id/vehicle_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/proxima_nova_semibold"
+                    android:hint="Bike Name"
+                    android:textSize="15sp" />
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/layout_vehicle_number"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="10dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/layout_vehicle_name"
+                app:layout_constraintTop_toTopOf="@id/layout_vehicle_name">
+
+                <android.support.design.widget.TextInputEditText
+                    android:id="@+id/vehicle_number"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/proxima_nova_semibold"
+                    android:hint="Bike Number"
+                    android:textSize="15sp" />
+            </android.support.design.widget.TextInputLayout>
+        </android.support.constraint.ConstraintLayout>
+
+    </android.support.v7.widget.CardView>
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/vehicle_cost_info_card"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="30dp"
+        app:cardCornerRadius="5dp"
+        app:cardElevation="5dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/vehicle_info_card">
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="10dp">
+
+        <TextView
+            android:id="@+id/vehicle_cost_info_text"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/card_text_background"
+            android:drawableLeft="@drawable/ic_car"
+            android:fontFamily="@font/proxima_nova_semibold"
+            android:gravity="center|left"
+            android:text="Cost Details"
+            android:textColor="#000"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/layout_weekend_cost"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            app:layout_constraintTop_toBottomOf="@id/vehicle_cost_info_text"
+            app:layout_constraintEnd_toStartOf="@id/layout_weekday_cost"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/weekend_cost"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:fontFamily="@font/proxima_nova_semibold"
+                android:hint="Weekend Cost"
+                android:textSize="15sp" />
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/layout_weekday_cost"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="10dp"
+            app:layout_constraintTop_toTopOf="@id/layout_weekend_cost"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/layout_weekend_cost">
+
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/weekday_cost"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:fontFamily="@font/proxima_nova_semibold"
+                android:hint="Weekday cost"
+                android:textSize="15sp" />
+        </android.support.design.widget.TextInputLayout>
+
+        </android.support.constraint.ConstraintLayout>
+
+    </android.support.v7.widget.CardView>
+
+    <Button
+        android:id="@+id/button_upload_image"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Upload Image"
-        app:layout_constraintTop_toBottomOf="@id/layout_weekday_cost"
-        android:id="@+id/button_upload_image"/>
-
-    <Button
-        android:layout_width="wrap_content"
+        android:layout_margin="30dp"
+        android:padding="10dp"
+        android:background="@drawable/entend_time_button_background"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/vehicle_cost_info_card" />
+
+    <Button
+        android:id="@+id/button_submit"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Submit"
-        app:layout_constraintTop_toBottomOf="@id/button_upload_image"
-        android:id="@+id/button_submit"/>
+        android:layout_margin="10dp"
+        android:padding="10dp"
+        android:background="@drawable/entend_time_button_background"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/button_upload_image" />
 </android.support.constraint.ConstraintLayout>
