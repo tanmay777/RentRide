@@ -4,13 +4,12 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Html
 import android.util.Log
+import android.view.MenuItem
 import com.bumptech.glide.Glide
 import com.example.tanmay.rentbaazvehicleadministration.R
-import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.activity_rent.*
-import kotlinx.android.synthetic.main.vehicle_detail_card.view.*
 
 class RentActivity : AppCompatActivity() {
 
@@ -20,6 +19,8 @@ class RentActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_rent)
         supportActionBar!!.title= Html.fromHtml("<font color=\"#a9a9a9\">Rent Out</font>")
+        supportActionBar!!.setDisplayHomeAsUpEnabled(true)
+        //TODO: Change color of up enabled button
     }
 
     override fun onStart() {
@@ -35,5 +36,16 @@ class RentActivity : AppCompatActivity() {
             cost_weekday.text=it.get("weekday_cost").toString()
             cost_weekend.text=it.get("weekend_cost").toString()
         }
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+
+        when(item?.itemId) {
+            android.R.id.home -> {
+                this.finish()
+                return true
+            }
+        }
+        return super.onOptionsItemSelected(item)
     }
 }

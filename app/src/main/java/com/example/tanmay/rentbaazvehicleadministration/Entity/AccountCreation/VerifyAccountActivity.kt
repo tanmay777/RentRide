@@ -195,13 +195,7 @@ class VerifyAccountActivity : AppCompatActivity() {
         const val RC_SIGN_IN = 123
     }
 
-    private fun signOut() {
-        AuthUI.getInstance()
-                .signOut(this)
-                .addOnCompleteListener {
-                    showSnackbar("Sign Out Successful")
-                }
-    }
+
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)

@@ -1,23 +1,28 @@
 package com.example.tanmay.rentbaazvehicleadministration.Entity.Home
 
+import android.content.Intent
+import android.graphics.PorterDuff
 import android.support.v7.app.AppCompatActivity
 
 import android.os.Bundle
-import android.support.constraint.ConstraintLayout
-import android.support.design.widget.CoordinatorLayout
 import android.support.design.widget.TabLayout
 import android.text.Html
 import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.LinearLayout
+import android.widget.Toast
+import com.example.tanmay.rentbaazvehicleadministration.Entity.AccountCreation.CreateAccountActivity
 
 import com.example.tanmay.rentbaazvehicleadministration.R
+import com.firebase.ui.auth.AuthUI
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
 import kotlinx.android.synthetic.main.activity_home.*
 import kotlinx.android.synthetic.main.nav_tab.view.*
 
 class HomeActivity : AppCompatActivity() {
-
+    lateinit var mAuth: FirebaseAuth
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,8 +31,9 @@ class HomeActivity : AppCompatActivity() {
         setSupportActionBar(toolbar)
         toolbar.title = Html.fromHtml("<font color=\"#a9a9a9\">Home</font>")
 
-
         configureTabLayout()
+        mAuth = FirebaseAuth.getInstance()
+
     }
 
     private fun configureTabLayout() {
@@ -81,7 +87,7 @@ class HomeActivity : AppCompatActivity() {
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
 // Inflate the menu; this adds items to the action bar if it is present.
-        menuInflater.inflate(R.menu.menu_home_activityone, menu)
+        menuInflater.inflate(R.menu.menu_home_activity, menu)
         return true
     }
 
@@ -91,7 +97,15 @@ class HomeActivity : AppCompatActivity() {
 // as you specify a parent activity in AndroidManifest.xml.
         val id = item.itemId
 
-        if (id == R.id.action_settings) {
+        if (id == R.id.modify_vehicles) {
+            return true
+        }
+
+        if (id == R.id.sign_out){
+            val currentUser = mAuth.currentUser
+            if(currentUser!=null){
+                signOut()
+            }
             return true
         }
 
@@ -101,6 +115,11 @@ class HomeActivity : AppCompatActivity() {
     override fun onBackPressed() {
         super.onBackPressed()
         finishAffinity()
+    }
+
+    private fun signOut() {
+        FirebaseAuth.getInstance().signOut()
+        startActivity(Intent(this,CreateAccountActivity::class.java))
     }
 
 //TODO: Add perimission mode for firestore database

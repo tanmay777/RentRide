@@ -16,16 +16,16 @@
         </activity>
         <activity android:name=".Entity.Register.RegisterActivity" />
         <activity android:name=".Entity.AccountCreation.CreateAccountActivity">
-        </activity>
-        <activity
-            android:name=".Entity.Home.HomeActivity"
-            android:label="@string/title_activity_home_activity"
-            android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name=".Entity.Home.HomeActivity"
+            android:label="@string/title_activity_home_activity"
+            android:theme="@style/AppTheme.NoActionBar">
         </activity>
     </application>
 
