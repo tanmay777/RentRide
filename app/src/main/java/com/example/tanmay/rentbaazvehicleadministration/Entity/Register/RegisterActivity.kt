@@ -10,6 +10,7 @@ import com.example.tanmay.rentbaazvehicleadministration.R
 import kotlinx.android.synthetic.main.activity_register.*
 import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.FirebaseFirestore
+import kotlinx.android.synthetic.main.activity_create_account.*
 
 class RegisterActivity : AppCompatActivity() {
 
@@ -25,6 +26,10 @@ class RegisterActivity : AppCompatActivity() {
     override fun onStart() {
         super.onStart()
         completed_button.setOnClickListener {
+            val pref=this.getSharedPreferences("user_detail",0)
+            val editor=pref!!.edit()
+            editor.putString("phone_number","+91"+login_phone_number.text.toString())
+            editor.apply()
             val user = User(first_name.text.toString(), last_name.text.toString(), intent.getStringExtra("phoneNum"), organization_name.text.toString(), address.text.toString())
             try {
                 userDocumentReference.document(intent.getStringExtra("phoneNum")).set(user).addOnSuccessListener {

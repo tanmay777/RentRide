@@ -1,5 +1,6 @@
 package com.example.tanmay.rentbaazvehicleadministration.Entity.Home
 
+import android.content.Context
 import android.content.Intent
 import android.graphics.PorterDuff
 import android.support.v7.app.AppCompatActivity
@@ -20,9 +21,14 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import kotlinx.android.synthetic.main.activity_home.*
 import kotlinx.android.synthetic.main.nav_tab.view.*
+import android.support.design.widget.Snackbar
+import android.support.design.widget.FloatingActionButton
+import com.example.tanmay.rentbaazvehicleadministration.Entity.AddVehicles.AddVehicleActivity
+
 
 class HomeActivity : AppCompatActivity() {
     lateinit var mAuth: FirebaseAuth
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,8 +37,13 @@ class HomeActivity : AppCompatActivity() {
         setSupportActionBar(toolbar)
         toolbar.title = Html.fromHtml("<font color=\"#a9a9a9\">Home</font>")
 
+        add_vehicle_fab.setOnClickListener { view ->
+            startActivity(Intent(this,AddVehicleActivity::class.java))
+        }
+
         configureTabLayout()
         mAuth = FirebaseAuth.getInstance()
+
 
     }
 

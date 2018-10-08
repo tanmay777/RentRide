@@ -25,7 +25,7 @@ class CreateAccountActivity : AppCompatActivity() {
         }
         send_otp_button.setOnClickListener{
             if(validatePhoneNumber(login_phone_number.text.toString())) {
-                var intent: Intent = Intent(this, VerifyAccountActivity::class.java)
+                val intent: Intent = Intent(this, VerifyAccountActivity::class.java)
                 intent.putExtra("phone_number", "+91" + login_phone_number.text.toString())
                 startActivity(intent)
             }

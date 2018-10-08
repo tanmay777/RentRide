@@ -12,8 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".Entity.Rent.RentActivity" />
-        <activity android:name=".Entity.AccountCreation.VerifyAccountActivity">
-        </activity>
+        <activity android:name=".Entity.AccountCreation.VerifyAccountActivity"></activity>
         <activity android:name=".Entity.Register.RegisterActivity" />
         <activity android:name=".Entity.AccountCreation.CreateAccountActivity">
             <intent-filter>
@@ -25,8 +24,8 @@
         <activity
             android:name=".Entity.Home.HomeActivity"
             android:label="@string/title_activity_home_activity"
-            android:theme="@style/AppTheme.NoActionBar">
-        </activity>
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity android:name=".Entity.AddVehicles.AddVehicleActivity"></activity>
     </application>
 
 </manifest>
