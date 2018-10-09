@@ -6,22 +6,17 @@ import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import com.bumptech.glide.Glide
-import com.example.tanmay.rentbaazvehicleadministration.Entity.AllVehicle.AllVehicleFragment
-import com.example.tanmay.rentbaazvehicleadministration.Entity.AllVehicle.AllVehicleModel
-import com.example.tanmay.rentbaazvehicleadministration.Entity.Rent.RentActivity
+import com.example.tanmay.rentbaazvehicleadministration.Entity.ToRent.ToRentActivity
 
 import com.example.tanmay.rentbaazvehicleadministration.R
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter
 import com.firebase.ui.firestore.FirestoreRecyclerOptions
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
-import kotlinx.android.synthetic.main.fragment_all_vehicle.view.*
 import kotlinx.android.synthetic.main.fragment_available_vehicle.view.*
 import kotlinx.android.synthetic.main.vehicle_detail_card.view.*
 
@@ -61,7 +56,7 @@ class AvailableFragment : Fragment() {
             view.cost_weekday.text=availableVehicleModel.weekday_cost
             view.cost_weekend.text=availableVehicleModel.weekend_cost
             view.setOnClickListener{
-                val intent=Intent(fragmentView.context,RentActivity::class.java)
+                val intent=Intent(fragmentView.context, ToRentActivity::class.java)
                 intent.putExtra("item_id",itemId)
                 startActivity(intent)
             }

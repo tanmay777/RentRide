@@ -1,6 +1,7 @@
 package com.example.tanmay.rentbaazvehicleadministration.Entity.OnRentVehicle
 
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
@@ -11,6 +12,8 @@ import android.view.ViewGroup
 import com.bumptech.glide.Glide
 import com.example.tanmay.rentbaazvehicleadministration.Entity.AllVehicle.AllVehicleFragment
 import com.example.tanmay.rentbaazvehicleadministration.Entity.AllVehicle.AllVehicleModel
+import com.example.tanmay.rentbaazvehicleadministration.Entity.OnRent.OnRentActivity
+import com.example.tanmay.rentbaazvehicleadministration.Entity.ToRent.ToRentActivity
 
 import com.example.tanmay.rentbaazvehicleadministration.R
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter
@@ -49,13 +52,18 @@ class OnRentVehicleFragment : Fragment() {
     }
 
     inner class VehicleViewHolder internal constructor(private val view:View): RecyclerView.ViewHolder(view){
-        internal fun setVehicleInfo(onRentVehicleModel: OnRentVehicleModel){
+        internal fun setVehicleInfo(onRentVehicleModel: OnRentVehicleModel,itemId:String?){
             view.bike_name.text=onRentVehicleModel.vehicle_name
             view.bike_number.text=onRentVehicleModel.vehicle_number
             Glide.with(fragmentView).load(onRentVehicleModel.vehicle_image_url).into(view.bike_img)
             view.bike_vendor_organization.text=onRentVehicleModel.vendor_organization
             view.cost_weekday.text=onRentVehicleModel.weekday_cost
             view.cost_weekend.text=onRentVehicleModel.weekend_cost
+            view.setOnClickListener{
+                val intent= Intent(fragmentView.context, OnRentActivity::class.java)
+                intent.putExtra("item_id",itemId)
+                startActivity(intent)
+            }
         }
     }
 
@@ -67,7 +75,7 @@ class OnRentVehicleFragment : Fragment() {
         }
 
         override fun onBindViewHolder(vehicleViewHolder: VehicleViewHolder, position: Int, onRentVehicleModel: OnRentVehicleModel) {
-            vehicleViewHolder.setVehicleInfo(onRentVehicleModel)
+            vehicleViewHolder.setVehicleInfo(onRentVehicleModel,onRentVehicleFirestoreRecyclerAdapter?.snapshots?.getSnapshot(position)?.id)
         }
 
         override fun onDataChanged() {

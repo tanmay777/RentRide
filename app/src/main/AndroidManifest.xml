@@ -11,8 +11,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Entity.Rent.RentActivity" />
-        <activity android:name=".Entity.AccountCreation.VerifyAccountActivity"></activity>
+        <activity android:name=".Entity.ToRent.ToRentActivity" />
+        <activity android:name=".Entity.AccountCreation.VerifyAccountActivity" />
         <activity android:name=".Entity.Register.RegisterActivity" />
         <activity android:name=".Entity.AccountCreation.CreateAccountActivity">
             <intent-filter>
@@ -24,8 +24,9 @@
         <activity
             android:name=".Entity.Home.HomeActivity"
             android:label="@string/title_activity_home_activity"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
-        <activity android:name=".Entity.AddVehicles.AddVehicleActivity"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".Entity.AddVehicles.AddVehicleActivity" />
+        <activity android:name=".Entity.OnRent.OnRentActivity"></activity>
     </application>
 
 </manifest>
