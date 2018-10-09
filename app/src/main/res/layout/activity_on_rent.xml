@@ -321,32 +321,52 @@
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
-
                     <TextView
-                        android:id="@+id/layout_pickup_date"
+                        android:layout_width="0dp"
+                        android:id="@+id/pick_up_date_text"
+                        android:layout_height="wrap_content"
+                        android:text="Pick Up Date"
+                        android:layout_margin="10dp"
+                        android:fontFamily="@font/proxima_nova_semibold"
+                        app:layout_constraintTop_toBottomOf="@id/journey_detail_text"
+                        app:layout_constraintEnd_toStartOf="@id/pick_up_time_text"
+                        app:layout_constraintStart_toStartOf="parent" />
+                    <TextView
+                        android:layout_width="0dp"
+                        android:id="@+id/pick_up_time_text"
+                        android:text="Pick Up Time"
+                        android:layout_marginEnd="10dp"
+                        android:fontFamily="@font/proxima_nova_semibold"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintTop_toBottomOf="@id/journey_detail_text"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/pick_up_date_text"
+                        app:layout_constraintTop_toTopOf="@id/pick_up_date_text"/>
+                    <TextView
+                        android:id="@+id/text_view_pickup_date"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_margin="10dp"
                         android:textColor="#000"
-                        app:layout_constraintEnd_toStartOf="@id/layout_pickup_time"
+                        app:layout_constraintEnd_toStartOf="@id/text_view_pickup_time"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/journey_detail_text"
+                        app:layout_constraintTop_toBottomOf="@id/pick_up_date_text"
                         android:fontFamily="@font/proxima_nova_semibold"
-                        android:text="Pick Up Date: 12.08.2018"
+                        android:text="12.08.2018"
                         android:textSize="15sp" >
                     </TextView>
 
                     <TextView
-                        android:id="@+id/layout_pickup_time"
+                        android:id="@+id/text_view_pickup_time"
                         android:layout_width="0dp"
                         android:textColor="#000"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="10dp"
-                        app:layout_constraintBottom_toBottomOf="@id/layout_pickup_date"
+                        app:layout_constraintTop_toTopOf="@id/text_view_pickup_date"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toEndOf="@id/layout_pickup_date"
+                        app:layout_constraintStart_toEndOf="@id/text_view_pickup_date"
                         android:fontFamily="@font/proxima_nova_semibold"
-                        android:text="Pick Up Time: 2:00pm"
+                        android:text="2:00pm"
                         android:textSize="15sp">
                     </TextView>
 
@@ -358,34 +378,56 @@
                         android:background="#dddddd"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/layout_pickup_date"></View>
+                        app:layout_constraintTop_toBottomOf="@id/text_view_pickup_date"></View>
 
                     <TextView
-                        android:id="@+id/layout_return_date"
+                        android:layout_width="0dp"
+                        android:id="@+id/return_date_text"
+                        android:layout_height="wrap_content"
+                        android:text="Return Date"
+                        android:layout_margin="10dp"
+                        android:fontFamily="@font/proxima_nova_semibold"
+                        app:layout_constraintTop_toBottomOf="@id/journey_detail_vertical_line"
+                        app:layout_constraintEnd_toStartOf="@id/return_time_text"
+                        app:layout_constraintStart_toStartOf="parent" />
+                    <TextView
+                        android:layout_width="0dp"
+                        android:id="@+id/return_time_text"
+                        android:text="Return Time"
+                        android:layout_marginEnd="10dp"
+                        android:fontFamily="@font/proxima_nova_semibold"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintTop_toBottomOf="@id/journey_detail_text"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/return_date_text"
+                        app:layout_constraintTop_toTopOf="@id/return_date_text"/>
+
+                    <TextView
+                        android:id="@+id/text_view_return_date"
                         android:layout_width="0dp"
                         android:textColor="#000"
                         android:layout_height="wrap_content"
                         android:layout_margin="10dp"
-                        app:layout_constraintEnd_toStartOf="@id/layout_return_time"
+                        app:layout_constraintEnd_toStartOf="@id/text_view_return_time"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/journey_detail_vertical_line"
+                        app:layout_constraintTop_toBottomOf="@id/return_date_text"
                         android:fontFamily="@font/proxima_nova_semibold"
-                        android:text="Return Date: 21.08.2018"
+                        android:text="21.08.2018"
                         android:textSize="15sp">
 
                     </TextView>
 
                     <TextView
-                        android:id="@+id/layout_return_time"
+                        android:id="@+id/text_view_return_time"
                         android:layout_width="0dp"
                         android:textColor="#000"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="10dp"
-                        app:layout_constraintBottom_toBottomOf="@id/layout_return_date"
+                        app:layout_constraintBottom_toBottomOf="@id/text_view_return_date"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toEndOf="@id/layout_return_date"
+                        app:layout_constraintStart_toEndOf="@id/text_view_return_date"
                         android:fontFamily="@font/proxima_nova_semibold"
-                        android:text="Return Time: 8:00pm"
+                        android:text="8:00pm"
                         android:textSize="15sp" >
                     </TextView>
 
@@ -424,48 +466,78 @@
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <TextView
-                        android:id="@+id/layout_registration_number"
                         android:layout_width="0dp"
-                        android:textColor="#000"
                         android:layout_height="wrap_content"
+                        android:text="Registration Number"
                         android:layout_margin="10dp"
-                        app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/rentee_detail_text"
                         android:fontFamily="@font/proxima_nova_semibold"
-                        android:text="Registration Number: 15BCE0618"
+                        android:id="@+id/registration_number_text"
+                        app:layout_constraintEnd_toStartOf="@id/text_view_registration_number"/>
+                    <TextView
+                        android:id="@+id/text_view_registration_number"
+                        android:layout_width="0dp"
+                        android:textColor="#000"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="10dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/registration_number_text"
+                        app:layout_constraintTop_toTopOf="@id/registration_number_text"
+                        android:fontFamily="@font/proxima_nova_semibold"
+                        android:text="15BCE0618"
+                        android:textSize="15sp" >
+                    </TextView>
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="Name"
+                        android:layout_margin="10dp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toStartOf="@id/text_view_name"
+                        app:layout_constraintTop_toBottomOf="@id/registration_number_text"
+                        android:fontFamily="@font/proxima_nova_semibold"
+                        android:id="@+id/name_text"
+                        />
+
+                    <TextView
+                        android:id="@+id/text_view_name"
+                        android:layout_width="0dp"
+                        android:textColor="#000"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="10dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/name_text"
+                        app:layout_constraintTop_toTopOf="@id/name_text"
+                        android:fontFamily="@font/proxima_nova_semibold"
+                        android:text="Tanmay Jha"
                         android:textSize="15sp" >
 
                     </TextView>
 
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="Phone Number"
+                        android:layout_margin="10dp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/name_text"
+                        android:fontFamily="@font/proxima_nova_semibold"
+                        android:id="@+id/phone_number_text"
+                        app:layout_constraintEnd_toStartOf="@id/text_view_contact_number"/>
 
                     <TextView
-                        android:id="@+id/layout_name"
+                        android:id="@+id/text_view_contact_number"
                         android:layout_width="0dp"
                         android:textColor="#000"
                         android:layout_height="wrap_content"
-                        android:layout_margin="10dp"
+                        android:layout_marginEnd="10dp"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/layout_registration_number"
+                        app:layout_constraintStart_toEndOf="@id/phone_number_text"
+                        app:layout_constraintTop_toTopOf="@id/phone_number_text"
                         android:fontFamily="@font/proxima_nova_semibold"
-                        android:text="Name: Tanmay Jha"
-                        android:textSize="15sp" >
-
-                    </TextView>
-
-                    <TextView
-                        android:id="@+id/layout_contact_number"
-                        android:layout_width="0dp"
-                        android:textColor="#000"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="10dp"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/layout_name"
-                        android:fontFamily="@font/proxima_nova_semibold"
-                        android:text="Number: 9790048621"
-                        android:inputType="number"
+                        android:text="9790048621"
                         android:textSize="15sp" >
 
                     </TextView>

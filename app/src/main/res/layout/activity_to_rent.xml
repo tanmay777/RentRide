@@ -184,16 +184,17 @@
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <android.support.design.widget.TextInputLayout
-                        android:id="@+id/layout_pickup_date"
+                        android:id="@+id/text_view_pickup_date"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_margin="10dp"
-                        app:layout_constraintEnd_toStartOf="@id/layout_pickup_time"
+                        app:layout_constraintEnd_toStartOf="@id/text_view_pickup_time"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/journey_detail_text">
 
                         <android.support.design.widget.TextInputEditText
                             android:layout_width="match_parent"
+                            android:id="@+id/edit_text_pick_up_date"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/proxima_nova_semibold"
                             android:hint="Pick Up Date"
@@ -201,17 +202,18 @@
                     </android.support.design.widget.TextInputLayout>
 
                     <android.support.design.widget.TextInputLayout
-                        android:id="@+id/layout_pickup_time"
+                        android:id="@+id/text_view_pickup_time"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="10dp"
-                        app:layout_constraintBottom_toBottomOf="@id/layout_pickup_date"
+                        app:layout_constraintBottom_toBottomOf="@id/text_view_pickup_date"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toEndOf="@id/layout_pickup_date">
+                        app:layout_constraintStart_toEndOf="@id/text_view_pickup_date">
 
                         <android.support.design.widget.TextInputEditText
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:id="@+id/edit_text_pick_up_time"
                             android:fontFamily="@font/proxima_nova_semibold"
                             android:hint="Pick Up Time"
                             android:textSize="15sp" />
@@ -225,19 +227,20 @@
                         android:background="#dddddd"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/layout_pickup_date"></View>
+                        app:layout_constraintTop_toBottomOf="@id/text_view_pickup_date"></View>
 
                     <android.support.design.widget.TextInputLayout
-                        android:id="@+id/layout_return_date"
+                        android:id="@+id/text_view_return_date"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_margin="10dp"
-                        app:layout_constraintEnd_toStartOf="@id/layout_return_time"
+                        app:layout_constraintEnd_toStartOf="@id/text_view_return_time"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/journey_detail_vertical_line">
 
                         <android.support.design.widget.TextInputEditText
                             android:layout_width="match_parent"
+                            android:id="@+id/edit_text_return_date"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/proxima_nova_semibold"
                             android:hint="Return Date"
@@ -245,17 +248,18 @@
                     </android.support.design.widget.TextInputLayout>
 
                     <android.support.design.widget.TextInputLayout
-                        android:id="@+id/layout_return_time"
+                        android:id="@+id/text_view_return_time"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="10dp"
-                        app:layout_constraintBottom_toBottomOf="@id/layout_return_date"
+                        app:layout_constraintBottom_toBottomOf="@id/text_view_return_date"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toEndOf="@id/layout_return_date">
+                        app:layout_constraintStart_toEndOf="@id/text_view_return_date">
 
                         <android.support.design.widget.TextInputEditText
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:id="@+id/edit_text_return_time"
                             android:fontFamily="@font/proxima_nova_semibold"
                             android:hint="Return Time"
                             android:textSize="15sp" />
@@ -296,7 +300,7 @@
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <android.support.design.widget.TextInputLayout
-                        android:id="@+id/layout_registration_number"
+                        android:id="@+id/text_view_registration_number"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_margin="10dp"
@@ -314,13 +318,13 @@
 
 
                     <android.support.design.widget.TextInputLayout
-                        android:id="@+id/layout_name"
+                        android:id="@+id/text_view_name"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_margin="10dp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/layout_registration_number">
+                        app:layout_constraintTop_toBottomOf="@id/text_view_registration_number">
 
                         <android.support.design.widget.TextInputEditText
                             android:layout_width="match_parent"
@@ -331,13 +335,13 @@
                     </android.support.design.widget.TextInputLayout>
 
                     <android.support.design.widget.TextInputLayout
-                        android:id="@+id/layout_contact_number"
+                        android:id="@+id/text_view_contact_number"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_margin="10dp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/layout_name">
+                        app:layout_constraintTop_toBottomOf="@id/text_view_name">
 
                         <android.support.design.widget.TextInputEditText
                             android:layout_width="match_parent"
