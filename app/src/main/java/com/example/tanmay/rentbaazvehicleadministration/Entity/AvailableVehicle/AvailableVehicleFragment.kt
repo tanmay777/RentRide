@@ -18,7 +18,7 @@ import kotlin.collections.ArrayList
 class AvailableFragment : Fragment() {
 
     lateinit var fragmentView: View
-    var availableVehicleList: ArrayList<VehicleModel> = ArrayList()
+
     val rootRef = FirebaseFirestore.getInstance()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
@@ -35,6 +35,7 @@ class AvailableFragment : Fragment() {
     }
 
     private fun loadAvailableVehilcle() {
+        var availableVehicleList: ArrayList<VehicleModel> = ArrayList()
         rootRef.collection("vehicle")
                 .get()
                 .addOnSuccessListener {
@@ -43,8 +44,8 @@ class AvailableFragment : Fragment() {
                         availableVehicle.id=it.id
                         var flag=true
                         for (bookingModel in availableVehicle.booking) {
-                            if ((bookingModel.pickup_details.compareTo(Date()) > 0) &&
-                                    (bookingModel.drop_details.compareTo(Date()) < 0)) {
+                            if ((bookingModel.pickup_details.compareTo(Date()) < 0) &&
+                                    (bookingModel.drop_details.compareTo(Date()) > 0)) {
                                 flag = false
                             }
                         }

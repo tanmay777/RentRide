@@ -17,7 +17,6 @@ import java.util.*
 class AllVehicleFragment : Fragment() {
 
     lateinit var fragmentView: View
-    var allVehicleList: ArrayList<VehicleModel> = ArrayList()
     val rootRef = FirebaseFirestore.getInstance()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
@@ -34,6 +33,7 @@ class AllVehicleFragment : Fragment() {
     }
 
     private fun loadAllVehilcle() {
+        var allVehicleList: ArrayList<VehicleModel> = ArrayList()
         rootRef.collection("vehicle")
                 .get()
                 .addOnSuccessListener {

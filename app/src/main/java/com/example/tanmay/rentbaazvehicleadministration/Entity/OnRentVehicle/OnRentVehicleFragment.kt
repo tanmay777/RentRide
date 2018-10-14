@@ -26,7 +26,6 @@ import java.util.*
 class OnRentVehicleFragment : Fragment() {
 
     lateinit var fragmentView: View
-    var onRentVehicleList: ArrayList<VehicleModel> = ArrayList()
     val rootRef = FirebaseFirestore.getInstance()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
@@ -43,6 +42,7 @@ class OnRentVehicleFragment : Fragment() {
     }
 
     private fun loadOnRentVehilcle() {
+        var onRentVehicleList: ArrayList<VehicleModel> = ArrayList()
         rootRef.collection("vehicle")
                 .get()
                 .addOnSuccessListener {
@@ -51,8 +51,8 @@ class OnRentVehicleFragment : Fragment() {
                         onRentVehicle.id=it.id
                         var flag=false
                         for (bookingModel in onRentVehicle.booking) {
-                            if ((bookingModel.pickup_details.compareTo(Date()) > 0) &&
-                                    (bookingModel.drop_details.compareTo(Date()) < 0)) {
+                            if ((bookingModel.pickup_details.compareTo(Date()) < 0) &&
+                                    (bookingModel.drop_details.compareTo(Date()) > 0)) {
                                 flag = true
                             }
                         }

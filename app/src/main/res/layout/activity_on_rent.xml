@@ -495,14 +495,14 @@
                         android:text="Name"
                         android:layout_margin="10dp"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintEnd_toStartOf="@id/text_view_name"
+                        app:layout_constraintEnd_toStartOf="@id/text_view_first_name"
                         app:layout_constraintTop_toBottomOf="@id/registration_number_text"
                         android:fontFamily="@font/proxima_nova_semibold"
                         android:id="@+id/name_text"
                         />
 
                     <TextView
-                        android:id="@+id/text_view_name"
+                        android:id="@+id/text_view_first_name"
                         android:layout_width="0dp"
                         android:textColor="#000"
                         android:layout_height="wrap_content"
