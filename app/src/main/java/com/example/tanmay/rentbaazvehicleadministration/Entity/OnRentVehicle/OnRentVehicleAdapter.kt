@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.bumptech.glide.Glide
 import com.example.tanmay.rentbaazvehicleadministration.Entity.Home.VehicleModel
+import com.example.tanmay.rentbaazvehicleadministration.Entity.OnRent.OnRentActivity
 import com.example.tanmay.rentbaazvehicleadministration.Entity.ToRent.ToRentActivity
 import com.example.tanmay.rentbaazvehicleadministration.R
 import kotlinx.android.synthetic.main.vehicle_detail_card.view.*
@@ -32,7 +33,7 @@ class OnRentVehicleAdapter (val onRentVehicleList:ArrayList<VehicleModel>, val c
         holder.cost_weekday.text = onRentVehicleList.get(position).weekday_cost
         holder.cost_weekend.text = onRentVehicleList.get(position).weekend_cost
         holder.view_holder.setOnClickListener {
-            val intent = Intent(context, ToRentActivity::class.java)
+            val intent = Intent(context, OnRentActivity::class.java)
             intent.putExtra("item_id", onRentVehicleList.get(position).id)
             startActivity(context,intent,null)
         }
