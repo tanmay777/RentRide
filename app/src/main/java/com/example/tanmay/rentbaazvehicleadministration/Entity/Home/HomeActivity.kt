@@ -24,6 +24,8 @@ import kotlinx.android.synthetic.main.nav_tab.view.*
 import android.support.design.widget.Snackbar
 import android.support.design.widget.FloatingActionButton
 import com.example.tanmay.rentbaazvehicleadministration.Entity.AddVehicles.AddVehicleActivity
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.FirebaseFirestoreSettings
 
 
 class HomeActivity : AppCompatActivity() {
@@ -43,7 +45,6 @@ class HomeActivity : AppCompatActivity() {
 
         configureTabLayout()
         mAuth = FirebaseAuth.getInstance()
-
 
     }
 

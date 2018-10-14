@@ -5,11 +5,13 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Html
 import android.widget.Toast
+import com.example.tanmay.rentbaazvehicleadministration.Entity.Home.bookingModel
 import com.example.tanmay.rentbaazvehicleadministration.R
 import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.activity_add_vehicle.*
+import java.util.Date
 
 class AddVehicleActivity : AppCompatActivity() {
 
@@ -48,9 +50,9 @@ class AddVehicleActivity : AppCompatActivity() {
                     organizationName,
                     "https://firebasestorage.googleapis.com/v0/b/rentbaaz-administration.appspot.com/o/Screenshot%202018-10-04%20at%2012.02.54%20PM%20(1).png?alt=media&token=821c1bf5-faa2-4590-8a71-906f53cd0067",
                     weekday_cost.text.toString(),
-                    weekend_cost.text.toString())
+                    weekend_cost.text.toString(), listOf(bookingModel("979004821", Date(0), Date(0))))
             availableVehicleReference.add(addVehicleAvailableModel).addOnSuccessListener {
-                Toast.makeText(this, "Successfully uploaded to the AvailableVehicleModel", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Successfully uploaded to the VehicleModel", Toast.LENGTH_SHORT).show()
                 documentId = it.id
             }
 
@@ -62,6 +64,7 @@ class AddVehicleActivity : AppCompatActivity() {
                     weekday_cost.text.toString(),
                     weekend_cost.text.toString(),
                     "1")
+
             allVehicleCollectionReference.add(addVehicleAllModel).addOnSuccessListener {
                 Toast.makeText(this, "Successfully uploaded to the AllVehicleDatabase", Toast.LENGTH_SHORT).show()
             }

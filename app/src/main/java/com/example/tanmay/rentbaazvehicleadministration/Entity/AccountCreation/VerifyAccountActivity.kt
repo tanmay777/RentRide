@@ -211,7 +211,7 @@ class VerifyAccountActivity : AppCompatActivity() {
                     showSnackbar("Sign In Cancelled")
                     return
                 }
-                response.errorCode == ErrorCodes.NO_NETWORK -> {
+                response.error?.errorCode == ErrorCodes.NO_NETWORK -> {
                     showSnackbar("No Network")
                     return
                 }
