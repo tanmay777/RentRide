@@ -14,6 +14,7 @@ import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.activity_on_rent.*
+import kotlinx.android.synthetic.main.fragment_on_rent_vehicle.view.*
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -32,7 +33,7 @@ class OnRentActivity : AppCompatActivity() {
         setContentView(R.layout.activity_on_rent)
 
         itemId = intent.getStringExtra("item_id")
-        Log.v("Item ID", itemId)
+        progressBar.visibility=View.VISIBLE
         onRentVehicleDocumentReference = FirebaseFirestore.getInstance().collection("vehicle").document(itemId)
         onRentVehicleDocumentReference.get().addOnSuccessListener { it: DocumentSnapshot ->
             vehicle = it.toObject(VehicleModel::class.java)
@@ -44,8 +45,8 @@ class OnRentActivity : AppCompatActivity() {
             cost_weekend.text = vehicle?.weekend_cost
             Log.v("Vehicle_model", vehicle.toString())
             for (bookingModel in vehicle!!.booking) {
-                if ((bookingModel.pickup_details.compareTo(Date()) < 0) &&
-                        (bookingModel.drop_details.compareTo(Date()) > 0)) {
+                if ((bookingModel.pickup_details.compareTo(Date()) > 0) &&
+                        (bookingModel.drop_details.compareTo(Date()) < 0)) {
                     val myFormat = "dd/MM/yyyy" // mention the format you need
                     val simpleDateFormat = SimpleDateFormat(myFormat, Locale.US)
                     text_view_pickup_date.text = simpleDateFormat.format(bookingModel.pickup_details)
@@ -60,6 +61,7 @@ class OnRentActivity : AppCompatActivity() {
                     }
                 }
             }
+            progressBar.visibility=View.GONE
         }
     }
 

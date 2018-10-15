@@ -50,6 +50,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ems="10"
+                    android:text="Tanmay"
                     android:fontFamily="@font/proxima_nova_semibold"
                     android:hint="First Name"
                     android:textSize="15sp" />
@@ -69,7 +70,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ems="10"
-
+                    android:text="Jha"
                     android:fontFamily="@font/proxima_nova_semibold"
                     android:hint="Last Name"
                     android:textSize="15sp"
@@ -91,7 +92,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ems="10"
-
+                    android:text="J and J Travals"
                     android:fontFamily="@font/proxima_nova_semibold"
                     android:hint="Organization Name"
                     android:textSize="15sp" />
@@ -112,6 +113,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ems="10"
+                    android:text="Near Allmart"
                     android:fontFamily="@font/proxima_nova_semibold"
                     android:hint="Address"
 

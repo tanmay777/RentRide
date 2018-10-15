@@ -31,11 +31,11 @@ class AllVehicleAdapter (val allVehicleList:ArrayList<VehicleModel>, val context
         holder.bike_vendor_organization.text = allVehicleList.get(position).vendor_organization
         holder.cost_weekday.text = allVehicleList.get(position).weekday_cost
         holder.cost_weekend.text = allVehicleList.get(position).weekend_cost
-        holder.view_holder.setOnClickListener {
+        /*holder.view_holder.setOnClickListener {
             val intent = Intent(context, ToRentActivity::class.java)
             intent.putExtra("item_id", allVehicleList.get(position).id)
             startActivity(context,intent,null)
-        }
+        }*/
     }
 
 }

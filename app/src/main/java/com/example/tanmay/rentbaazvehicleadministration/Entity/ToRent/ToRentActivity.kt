@@ -18,6 +18,7 @@ import com.example.tanmay.rentbaazvehicleadministration.R
 import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.activity_to_rent.*
+import kotlinx.android.synthetic.main.fragment_on_rent_vehicle.view.*
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -147,6 +148,7 @@ class ToRentActivity : AppCompatActivity() {
         super.onStart()
         itemId = intent.getStringExtra("item_id")
         Log.v("Item ID", itemId)
+        progressBar.visibility = View.VISIBLE
         val vehicleDocumentReference = FirebaseFirestore.getInstance().collection("vehicle").document(itemId)
         vehicleDocumentReference.get().addOnSuccessListener { it: DocumentSnapshot ->
 
@@ -158,6 +160,7 @@ class ToRentActivity : AppCompatActivity() {
             bike_organization.text = it.get("vendor_organization").toString()
             cost_weekday.text = it.get("weekday_cost").toString()
             cost_weekend.text = it.get("weekend_cost").toString()
+            progressBar.visibility = View.GONE
         }
 
         submit.setOnClickListener {

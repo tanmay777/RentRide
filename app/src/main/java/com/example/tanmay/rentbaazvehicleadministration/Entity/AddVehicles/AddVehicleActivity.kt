@@ -52,7 +52,7 @@ class AddVehicleActivity : AppCompatActivity() {
                     organizationName,
                     "https://firebasestorage.googleapis.com/v0/b/rentbaaz-administration.appspot.com/o/Screenshot%202018-10-04%20at%2012.02.54%20PM%20(1).png?alt=media&token=821c1bf5-faa2-4590-8a71-906f53cd0067",
                     weekday_cost.text.toString(),
-                    weekend_cost.text.toString(), mutableListOf(bookingModel("979004821", Date(0), Date(0))),documentId)
+                    weekend_cost.text.toString(), mutableListOf(bookingModel("0", Date(0), Date(0))),documentId)
 
             vehicleCollectionReference.document(documentId).set(addVehicleAvailableModel).addOnSuccessListener {
                 Toast.makeText(this@AddVehicleActivity,"Added to database",Toast.LENGTH_SHORT).show()

@@ -21,6 +21,7 @@ class RegisterActivity : AppCompatActivity() {
         setContentView(R.layout.activity_register)
         supportActionBar!!.title= Html.fromHtml("<font color=\"#a9a9a9\">Register</font>")
         userDocumentReference = FirebaseFirestore.getInstance().collection("users")
+        //TODO: This activity will be skipped if the user is already registered
     }
 
     override fun onStart() {
@@ -28,7 +29,7 @@ class RegisterActivity : AppCompatActivity() {
         completed_button.setOnClickListener {
             val pref=this.getSharedPreferences("user_detail",0)
             val editor=pref!!.edit()
-            editor.putString("phone_number","+91"+login_phone_number.text.toString())
+            editor.putString("phone_number",intent.getStringExtra("phoneNum"))
             editor.apply()
             val user = User(first_name.text.toString(), last_name.text.toString(), intent.getStringExtra("phoneNum"), organization_name.text.toString(), address.text.toString())
             try {

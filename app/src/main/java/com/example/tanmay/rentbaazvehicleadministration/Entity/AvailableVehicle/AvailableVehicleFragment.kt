@@ -35,6 +35,7 @@ class AvailableFragment : Fragment() {
     }
 
     private fun loadAvailableVehilcle() {
+        fragmentView.progressBar.visibility=View.VISIBLE
         var availableVehicleList: ArrayList<VehicleModel> = ArrayList()
         rootRef.collection("vehicle")
                 .get()
@@ -44,8 +45,8 @@ class AvailableFragment : Fragment() {
                         availableVehicle.id=it.id
                         var flag=true
                         for (bookingModel in availableVehicle.booking) {
-                            if ((bookingModel.pickup_details.compareTo(Date()) < 0) &&
-                                    (bookingModel.drop_details.compareTo(Date()) > 0)) {
+                            if ((bookingModel.pickup_details.compareTo(Date()) > 0) &&
+                                    (bookingModel.drop_details.compareTo(Date()) < 0)) {
                                 flag = false
                             }
                         }
@@ -54,6 +55,8 @@ class AvailableFragment : Fragment() {
                         }
                     }
                     fragmentView.recycler_view_available_vehicle.adapter = AvailableVehicleAdapter(availableVehicleList, fragmentView.context)
+                    fragmentView.progressBar.visibility=View.GONE
                 }
+
     }
 }

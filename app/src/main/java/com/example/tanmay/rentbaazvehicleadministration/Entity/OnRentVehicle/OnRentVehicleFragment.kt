@@ -42,6 +42,7 @@ class OnRentVehicleFragment : Fragment() {
     }
 
     private fun loadOnRentVehilcle() {
+        fragmentView.progressBar.visibility=View.VISIBLE
         var onRentVehicleList: ArrayList<VehicleModel> = ArrayList()
         rootRef.collection("vehicle")
                 .get()
@@ -51,8 +52,8 @@ class OnRentVehicleFragment : Fragment() {
                         onRentVehicle.id=it.id
                         var flag=false
                         for (bookingModel in onRentVehicle.booking) {
-                            if ((bookingModel.pickup_details.compareTo(Date()) < 0) &&
-                                    (bookingModel.drop_details.compareTo(Date()) > 0)) {
+                            if ((bookingModel.pickup_details.compareTo(Date()) > 0) &&
+                                    (bookingModel.drop_details.compareTo(Date()) < 0)) {
                                 flag = true
                             }
                         }
@@ -61,7 +62,9 @@ class OnRentVehicleFragment : Fragment() {
                         }
                     }
                     fragmentView.recycler_view_on_rent.adapter = OnRentVehicleAdapter(onRentVehicleList, fragmentView.context)
+                    fragmentView.progressBar.visibility=View.GONE
                 }
+
     }
 }
 

@@ -33,6 +33,7 @@ class AllVehicleFragment : Fragment() {
     }
 
     private fun loadAllVehilcle() {
+        fragmentView.progressBar.visibility=View.VISIBLE
         var allVehicleList: ArrayList<VehicleModel> = ArrayList()
         rootRef.collection("vehicle")
                 .get()
@@ -43,6 +44,8 @@ class AllVehicleFragment : Fragment() {
                         allVehicleList.add(allVehicle)
                     }
                     fragmentView.recycler_view_all_vehicle.adapter = AllVehicleAdapter(allVehicleList, fragmentView.context)
+                    fragmentView.progressBar.visibility=View.GONE
                 }
+
     }
 }
