@@ -42,6 +42,8 @@
             android:gravity="center"
             app:layout_constraintStart_toEndOf="@id/bike_name"
             app:layout_constraintEnd_toStartOf="@id/bike_number"
+            app:layout_constraintBottom_toBottomOf="@id/horizontal_line"
+            app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBaseline_toBaselineOf="@+id/bike_name"/>
 
         <TextView
@@ -67,7 +69,7 @@
             android:background="#ececec"
             app:layout_constraintEnd_toEndOf="@id/margin_end"
             app:layout_constraintStart_toStartOf="@id/margin_start"
-            app:layout_constraintTop_toBottomOf="@id/bike_number">
+            app:layout_constraintTop_toBottomOf="@id/bike_vendor_organization">
         </View>
 
         <android.support.constraint.Guideline

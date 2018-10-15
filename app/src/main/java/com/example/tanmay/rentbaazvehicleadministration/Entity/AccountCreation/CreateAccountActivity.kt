@@ -3,8 +3,10 @@ package com.example.tanmay.rentbaazvehicleadministration.Entity.AccountCreation
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.text.Editable
 import android.text.Html
 import android.text.TextUtils
+import android.text.TextWatcher
 import android.widget.Toast
 import com.example.tanmay.rentbaazvehicleadministration.Entity.Home.HomeActivity
 import com.example.tanmay.rentbaazvehicleadministration.R
@@ -14,14 +16,13 @@ import com.google.firebase.firestore.FirebaseFirestoreSettings
 import com.google.firebase.firestore.FirebaseFirestore
 
 
-
 class CreateAccountActivity : AppCompatActivity() {
     lateinit var mAuth: FirebaseAuth
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_create_account)
-        supportActionBar!!.title= Html.fromHtml("<font color=\"#a9a9a9\">Create Account</font>")
+        supportActionBar!!.title = Html.fromHtml("<font color=\"#a9a9a9\">Create Account</font>")
         val firestore = FirebaseFirestore.getInstance()
         val settings = FirebaseFirestoreSettings.Builder()
                 .setTimestampsInSnapshotsEnabled(true)
@@ -30,24 +31,46 @@ class CreateAccountActivity : AppCompatActivity() {
 
         mAuth = FirebaseAuth.getInstance()
         val currentUser = mAuth.currentUser
-        if(currentUser!=null) {
+        if (currentUser != null) {
             startActivity(Intent(this, HomeActivity::class.java))
         }
-        send_otp_button.setOnClickListener{
-            if(validatePhoneNumber(login_phone_number.text.toString())) {
-                val intent: Intent = Intent(this, VerifyAccountActivity::class.java)
+
+        login_phone_number.addTextChangedListener(object : TextWatcher {
+            override fun afterTextChanged(s: Editable?) {
+                if (s.toString().length != 10) {
+                    layout_phone_number.error = "It should be 10 digits only"
+                }
+                else
+                    layout_phone_number.error = null
+            }
+
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+            }
+        })
+
+        send_otp_button.setOnClickListener {
+            if(validate()) {
+                val intent: Intent = Intent(this@CreateAccountActivity, VerifyAccountActivity::class.java)
                 intent.putExtra("phone_number", "+91" + login_phone_number.text.toString())
                 startActivity(intent)
             }
         }
     }
 
-    private fun validatePhoneNumber(phoneNumber:String): Boolean {
-        if (TextUtils.isEmpty(phoneNumber)) {
-            Toast.makeText(applicationContext,"Enter number first",Toast.LENGTH_SHORT).show()
-            return false
+    fun validate():Boolean{
+        var flag=true
+        if(login_phone_number.text.toString().length!=10){
+            flag=false
+            layout_phone_number.error="It should be 10 digits only"
         }
-        //TODO: Have better validation of phone algo and also use text layout to show error
-        return true
+        return flag
+    }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        finishAffinity()
     }
 }

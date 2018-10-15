@@ -4,7 +4,6 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import android.widget.Toast
 import com.bumptech.glide.Glide
 import com.example.tanmay.rentbaazvehicleadministration.Entity.Home.VehicleModel
 import com.example.tanmay.rentbaazvehicleadministration.Entity.Home.bookingModel
@@ -14,7 +13,6 @@ import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.activity_on_rent.*
-import kotlinx.android.synthetic.main.fragment_on_rent_vehicle.view.*
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -49,15 +47,15 @@ class OnRentActivity : AppCompatActivity() {
                         (bookingModel.drop_details.compareTo(Date()) < 0)) {
                     val myFormat = "dd/MM/yyyy" // mention the format you need
                     val simpleDateFormat = SimpleDateFormat(myFormat, Locale.US)
-                    text_view_pickup_date.text = simpleDateFormat.format(bookingModel.pickup_details)
-                    text_view_pickup_time.text = SimpleDateFormat("HH:mm").format(bookingModel.pickup_details)
-                    text_view_return_date.text = simpleDateFormat.format(bookingModel.drop_details)
-                    text_view_return_time.text = SimpleDateFormat("HH:mm").format(bookingModel.drop_details)
+                    layout_pickup_date.text = simpleDateFormat.format(bookingModel.pickup_details)
+                    layout_pickup_time.text = SimpleDateFormat("HH:mm").format(bookingModel.pickup_details)
+                    layout_return_date.text = simpleDateFormat.format(bookingModel.drop_details)
+                    layout_return_time.text = SimpleDateFormat("HH:mm").format(bookingModel.drop_details)
                     FirebaseFirestore.getInstance().collection("rentee_details").document(bookingModel.phone_num).get().addOnSuccessListener {
                         val fullName = it.get("first_name").toString() + " " + it.get("last_name").toString()
-                        text_view_first_name.text = fullName
-                        text_view_registration_number.text = it.get("registration_number").toString()
-                        text_view_contact_number.text = it.get("phone_number").toString()
+                        layout_first_name.text = fullName
+                        layout_registration_number.text = it.get("registration_number").toString()
+                        layout_contact_number.text = it.get("phone_number").toString()
                     }
                 }
             }

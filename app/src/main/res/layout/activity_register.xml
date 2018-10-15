@@ -39,6 +39,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
+                app:errorEnabled="true"
                 android:layout_marginBottom="10dp"
                 android:layout_marginTop="20dp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -50,7 +51,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ems="10"
-                    android:text="Tanmay"
                     android:fontFamily="@font/proxima_nova_semibold"
                     android:hint="First Name"
                     android:textSize="15sp" />
@@ -60,6 +60,7 @@
                 android:id="@+id/layout_last_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                app:errorEnabled="true"
                 android:layout_margin="10dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -70,7 +71,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ems="10"
-                    android:text="Jha"
                     android:fontFamily="@font/proxima_nova_semibold"
                     android:hint="Last Name"
                     android:textSize="15sp"
@@ -82,6 +82,7 @@
                 android:id="@+id/layout_organization_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                app:errorEnabled="true"
                 android:layout_margin="10dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -92,7 +93,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ems="10"
-                    android:text="J and J Travals"
                     android:fontFamily="@font/proxima_nova_semibold"
                     android:hint="Organization Name"
                     android:textSize="15sp" />
@@ -104,6 +104,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:errorEnabled="true"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/layout_organization_name"
                 app:layout_constraintBottom_toTopOf="@id/completed_button">
@@ -113,7 +114,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ems="10"
-                    android:text="Near Allmart"
                     android:fontFamily="@font/proxima_nova_semibold"
                     android:hint="Address"
 

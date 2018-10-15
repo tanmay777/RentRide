@@ -123,6 +123,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
+                android:inputType="number"
                 android:fontFamily="@font/proxima_nova_semibold"
                 android:hint="Weekend Cost"
                 android:textSize="15sp" />
@@ -142,6 +143,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
+                android:inputType="number"
                 android:fontFamily="@font/proxima_nova_semibold"
                 android:hint="Weekday cost"
                 android:textSize="15sp" />

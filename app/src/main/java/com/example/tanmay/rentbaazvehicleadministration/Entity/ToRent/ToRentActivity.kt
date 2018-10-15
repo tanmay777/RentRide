@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
 import android.text.Html
+import android.text.TextWatcher
 import android.util.Log
 import android.view.MenuItem
 import android.view.MotionEvent
@@ -43,6 +44,134 @@ class ToRentActivity : AppCompatActivity() {
         //TODO: Change color of up enabled button
         //TODO: Disable Keyboard Popping
 
+        edit_text_pick_up_date.addTextChangedListener(object : TextWatcher {
+            override fun afterTextChanged(s: Editable?) {
+                if (s.toString().isEmpty()) {
+                    layout_pickup_date.error = "Pick Up Date cannot be Empty"
+                } else
+                    layout_pickup_date.error = null
+            }
+
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+
+            }
+        })
+        edit_text_pick_up_time.addTextChangedListener(object : TextWatcher {
+            override fun afterTextChanged(s: Editable?) {
+                if (s.toString().isEmpty()) {
+                    layout_pickup_time.error = "Pick Up Time cannot be Empty"
+                } else
+                    layout_pickup_time.error = null
+            }
+
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+
+            }
+        })
+        edit_text_return_date.addTextChangedListener(object : TextWatcher {
+            override fun afterTextChanged(s: Editable?) {
+                if (s.toString().isEmpty()) {
+                    layout_return_date.error = "Return Date cannot be Empty"
+                } else
+                    layout_return_date.error = null
+            }
+
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+
+            }
+        })
+        edit_text_return_time.addTextChangedListener(object : TextWatcher {
+            override fun afterTextChanged(s: Editable?) {
+                if (s.toString().isEmpty()) {
+                    layout_return_time.error = "Return Time cannot be Empty"
+                } else
+                    layout_return_time.error = null
+            }
+
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+
+            }
+        })
+        registration_number.addTextChangedListener(object : TextWatcher {
+            override fun afterTextChanged(s: Editable?) {
+                if (s.toString().isEmpty()) {
+                    layout_registration_number.error = "Registration Number cannot be Empty"
+                } else
+                    layout_registration_number.error = null
+            }
+
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+
+            }
+        })
+        first_name.addTextChangedListener(object : TextWatcher {
+            override fun afterTextChanged(s: Editable?) {
+                if (s.toString().isEmpty()) {
+                    layout_first_name.error = "First Name cannot be Empty"
+                } else
+                    layout_first_name.error = null
+            }
+
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+
+            }
+        })
+        last_name.addTextChangedListener(object : TextWatcher {
+            override fun afterTextChanged(s: Editable?) {
+                if (s.toString().isEmpty()) {
+                    layout_last_name.error = "Last Name cannot be Empty"
+                } else
+                    layout_last_name.error = null
+            }
+
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+
+            }
+        })
+        number.addTextChangedListener(object : TextWatcher {
+            override fun afterTextChanged(s: Editable?) {
+                if (s.toString().isEmpty()) {
+                    layout_contact_number.error = "Contact Number cannot be Empty"
+                } else
+                    layout_contact_number.error = null
+            }
+
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+
+            }
+        })
         val pickUpDateSetListener = object : DatePickerDialog.OnDateSetListener {
             override fun onDateSet(view: DatePicker, year: Int, monthOfYear: Int,
                                    dayOfMonth: Int) {
@@ -164,17 +293,58 @@ class ToRentActivity : AppCompatActivity() {
         }
 
         submit.setOnClickListener {
-            vehicle?.booking?.add(bookingModel(number.text.toString(), Date(pickUpDateTime.time), Date(returnDateTime.time)))
-            rootRef.collection("vehicle").document(itemId).set(vehicle!!)
+            if (validate()) {
+                vehicle?.booking?.add(bookingModel(number.text.toString(), Date(pickUpDateTime.time), Date(returnDateTime.time)))
+                rootRef.collection("vehicle").document(itemId).set(vehicle!!)
 
-            rootRef.collection("rentee_details").document(number.text.toString()).set(RenteeModel(first_name.text.toString(),
-                    last_name.text.toString(),
-                    number.text.toString(),
-                    registration_number.text.toString()))
+                rootRef.collection("rentee_details").document(number.text.toString()).set(RenteeModel(first_name.text.toString(),
+                        last_name.text.toString(),
+                        number.text.toString(),
+                        registration_number.text.toString()))
+            }
         }
 
     }
 
+    fun validate():Boolean{
+        var flag=true
+        if(first_name.text.toString().isEmpty()){
+            layout_first_name.error = "First Name cannot be Empty"
+            flag=false
+        }
+        if(last_name.text.toString().isEmpty())
+        {
+            layout_last_name.error = "Last Name cannot be Empty"
+            flag=false
+        }
+        if(number.text.toString().isEmpty())
+        {
+            layout_contact_number.error = "Contact Number cannot be Empty"
+            flag=false
+        }
+        if(registration_number.text.toString().isEmpty())
+        {
+            layout_registration_number.error = "Registration Number cannot be Empty"
+            flag=false
+        }
+        if(edit_text_pick_up_date.text.toString().isEmpty()){
+            layout_pickup_date.error = "Pick Up Date cannot be Empty"
+            flag=false
+        }
+        if(edit_text_pick_up_time.text.toString().isEmpty()) {
+            layout_pickup_time.error = "Pick Up Time cannot be Empty"
+            flag=false
+        }
+        if(edit_text_return_date.text.toString().isEmpty()){
+            layout_return_date.error = "Return Date cannot be Empty"
+            flag=false
+        }
+        if(edit_text_return_time.text.toString().isEmpty()){
+            layout_return_time.error = "Return Time cannot be Empty"
+            flag=false
+        }
+        return flag
+    }
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
 
         when (item?.itemId) {

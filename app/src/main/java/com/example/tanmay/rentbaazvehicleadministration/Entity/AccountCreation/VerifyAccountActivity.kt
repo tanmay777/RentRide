@@ -8,14 +8,15 @@ import android.text.Html
 import android.text.TextUtils
 import android.util.Log
 import android.widget.Toast
+import com.example.tanmay.rentbaazvehicleadministration.Entity.Home.HomeActivity
 import com.example.tanmay.rentbaazvehicleadministration.Entity.Register.RegisterActivity
 import com.example.tanmay.rentbaazvehicleadministration.R
-import com.firebase.ui.auth.AuthUI
 import com.firebase.ui.auth.ErrorCodes
 import com.firebase.ui.auth.IdpResponse
 import com.google.firebase.FirebaseException
 import com.google.firebase.FirebaseTooManyRequestsException
 import com.google.firebase.auth.*
+import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.activity_verify_account.*
 import java.util.concurrent.TimeUnit
 
@@ -69,7 +70,7 @@ class VerifyAccountActivity : AppCompatActivity() {
         verify_button.setOnClickListener {
             val code = getVerficationCode()
             if (TextUtils.isEmpty(code)) {
-                showSnackbar("Phone number cannot be empty")
+                showLog("Phone number cannot be empty")
                 return@setOnClickListener
             }
             verifyPhoneNumberWithCode(mVerificationId!!.toString(), code)
@@ -90,7 +91,7 @@ class VerifyAccountActivity : AppCompatActivity() {
                 // 2 - Auto-retrieval. On some devices Google Play services can automatically
                 //     detect the incoming verification SMS and perform verification without
                 //     user action.
-                showSnackbar("onVerificationCompleted:" + credential)
+                showLog("onVerificationCompleted:" + credential)
                 // [START_EXCLUDE silent]
                 mVerificationInProgress = false
                 //[END_EXCLUDE]
@@ -101,25 +102,25 @@ class VerifyAccountActivity : AppCompatActivity() {
                 // This callback is invoked in an invalid request for verification is made,
                 // for instance if the the phone number format is not valid.
                 // [START_EXCLUDE silent]
-                showSnackbar("onVerificationFailed")
+                showLog("onVerificationFailed")
                 mVerificationInProgress = false
                 //[END_EXCLUDE]
 
                 if (e is FirebaseAuthInvalidCredentialsException) {
                     //Invalid Request
-                    showSnackbar("Invalid Phone Number")
+                    showLog("Invalid Phone Number")
                 } else if (e is FirebaseTooManyRequestsException) {
                     //The SMS quote for the project has exceeded
-                    showSnackbar("Quota Exceeded")
+                    showLog("Quota Exceeded")
                 }
-                showSnackbar("Verification Failed")
+                showLog("Verification Failed")
             }
 
             override fun onCodeSent(verificationId: String?, token: PhoneAuthProvider.ForceResendingToken?) {
                 // The SMS verification code has been sent to the provided phone number, we
                 // now need to ask the user to enter the code and then construct a credential
                 // by combining the code with a verification ID.
-                showSnackbar("Code Sent:" + verificationId)
+                showLog("Code Sent:" + verificationId)
                 // Save verification ID and resending token so we can use them later
                 mVerificationId = verificationId
                 mResendToken = token
@@ -127,7 +128,7 @@ class VerifyAccountActivity : AppCompatActivity() {
 
             override fun onCodeAutoRetrievalTimeOut(verificationId: String?) {
                 super.onCodeAutoRetrievalTimeOut(verificationId)
-                showSnackbar("Code TimeOut")
+                showLog("Code TimeOut")
             }
         }
         // [END phone_auth_callbacks]
@@ -138,19 +139,32 @@ class VerifyAccountActivity : AppCompatActivity() {
                 .addOnCompleteListener(this) { task ->
                     if (task.isSuccessful) {
                         // Sign in success, update UI with the signed-in user's information
-                        showSnackbar("Sign in with Credentials: successful")
+                        showLog("Sign in with Credentials: successful")
                         //val user = task.result.user
-                        val intent:Intent=Intent(this, RegisterActivity::class.java)
-                        Toast.makeText(applicationContext,phoneNum,Toast.LENGTH_SHORT).show()
-                        intent.putExtra("phoneNum",phoneNum)
-                        startActivity(intent)
+                        val pref = this.getSharedPreferences("user_detail", 0)
+                        val editor = pref!!.edit()
+                        editor.putString("phone_number", phoneNum)
+                        editor.apply()
+
+                        FirebaseFirestore.getInstance().collection("users").document(phoneNum).get().addOnSuccessListener {
+                            if (it.exists()) {
+                                startActivity(Intent(this, HomeActivity::class.java))
+                            }
+                            else{
+                                val intent:Intent=Intent(this, RegisterActivity::class.java)
+                                Toast.makeText(applicationContext,phoneNum,Toast.LENGTH_SHORT).show()
+                                intent.putExtra("phoneNum",phoneNum)
+                                startActivity(intent)
+                            }
+                        }
+
                     } else {
                         // Sign in failed, display a message and update the UI
-                        showSnackbar("Sign in with Credentials: failed")
+                        showLog("Sign in with Credentials: failed")
                         if (task.exception is FirebaseAuthInvalidCredentialsException) {
-                            showSnackbar("Invalid Code.")
+                            showLog("Invalid Code.")
                         }
-                        showSnackbar("Sign in Failed")
+                        showLog("Sign in Failed")
                     }
 
                 }
@@ -204,20 +218,20 @@ class VerifyAccountActivity : AppCompatActivity() {
             val response = IdpResponse.fromResultIntent(data)
             when {
                 resultCode == Activity.RESULT_OK -> {
-                    showSnackbar("Sign In Successful")
+                    showLog("Sign In Successful")
                     return
                 }
                 response == null -> {
-                    showSnackbar("Sign In Cancelled")
+                    showLog("Sign In Cancelled")
                     return
                 }
                 response.error?.errorCode == ErrorCodes.NO_NETWORK -> {
-                    showSnackbar("No Network")
+                    showLog("No Network")
                     return
                 }
 
                 else -> {
-                    showSnackbar("Unknown Response")
+                    showLog("Unknown Response")
                 }
             }
         }
@@ -233,8 +247,13 @@ class VerifyAccountActivity : AppCompatActivity() {
         mVerificationInProgress=savedInstanceState.getBoolean(KEY_VERIFY_IN_PROGRESS)
     }
     
-    fun showSnackbar(message:String){
+    fun showLog(message:String){
         Log.e("VerifyAccountActivity",message)
         //Snackbar.make(findViewById(android.R.id.content), message, Snackbar.LENGTH_SHORT).show()
+    }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        finishAffinity()
     }
 }
