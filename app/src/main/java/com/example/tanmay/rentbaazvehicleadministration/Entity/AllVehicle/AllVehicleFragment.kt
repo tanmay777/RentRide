@@ -10,6 +10,7 @@ import com.example.tanmay.rentbaazvehicleadministration.Entity.Home.VehicleModel
 
 import com.example.tanmay.rentbaazvehicleadministration.R
 import com.google.firebase.firestore.FirebaseFirestore
+import kotlinx.android.synthetic.main.fragment_all_vehicle.*
 
 import kotlinx.android.synthetic.main.fragment_all_vehicle.view.*
 import java.util.*
@@ -18,6 +19,7 @@ class AllVehicleFragment : Fragment() {
 
     lateinit var fragmentView: View
     val rootRef = FirebaseFirestore.getInstance()
+    private lateinit var mRunnable:Runnable
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -28,12 +30,16 @@ class AllVehicleFragment : Fragment() {
 
     override fun onStart() {
         super.onStart()
-        loadAllVehilcle()
+        loadAllVehilcle(true) //This true/false is to distinguish whether we have to load data from swipe down to refresh or normal load when fragment starts
         fragmentView.recycler_view_all_vehicle.layoutManager = LinearLayoutManager(fragmentView.context)
+        swipe_container.setOnRefreshListener {
+                loadAllVehilcle(false)
+        }
     }
 
-    private fun loadAllVehilcle() {
-        fragmentView.progressBar.visibility=View.VISIBLE
+    private fun loadAllVehilcle(flag:Boolean) {
+        if(flag)
+            fragmentView.progressBar.visibility=View.VISIBLE
         var allVehicleList: ArrayList<VehicleModel> = ArrayList()
         rootRef.collection("vehicle")
                 .get()
@@ -44,7 +50,10 @@ class AllVehicleFragment : Fragment() {
                         allVehicleList.add(allVehicle)
                     }
                     fragmentView.recycler_view_all_vehicle.adapter = AllVehicleAdapter(allVehicleList, fragmentView.context)
-                    fragmentView.progressBar.visibility=View.GONE
+                    if(flag)
+                        fragmentView.progressBar.visibility=View.GONE
+                    else
+                        swipe_container.isRefreshing = false
                 }
 
     }

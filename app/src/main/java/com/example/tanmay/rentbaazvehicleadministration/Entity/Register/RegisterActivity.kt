@@ -97,10 +97,7 @@ class RegisterActivity : AppCompatActivity() {
     override fun onStart() {
         super.onStart()
         completed_button.setOnClickListener {
-            if (layout_first_name.error == null &&
-                    layout_last_name.error == null
-                    && layout_organization_name.error == null
-                    && layout_address.error == null) {
+            if (validate()) {
                 val user = User(first_name.text.toString(), last_name.text.toString(), intent.getStringExtra("phoneNum"), organization_name.text.toString(), address.text.toString())
                 try {
                     userCollectionReference.document(intent.getStringExtra("phoneNum")).set(user).addOnSuccessListener { void: Void? ->
@@ -119,19 +116,19 @@ class RegisterActivity : AppCompatActivity() {
 
     fun validate():Boolean{
         var flag=true
-        if(first_name.text.toString().isEmpty()){
+        if(first_name.text.toString().trim().isEmpty()){
             layout_first_name.error="First Name cannot be empty"
             flag=false
         }
-        if(last_name.text.toString().isEmpty()){
+        if(last_name.text.toString().trim().isEmpty()){
             layout_last_name.error="Last Name cannot be empty"
             flag=false
         }
-        if(organization_name.text.toString().isEmpty()){
+        if(organization_name.text.toString().trim().isEmpty()){
             layout_organization_name.error="Organization Name cannot be empty"
             flag=false
         }
-        if(address.text.toString().isEmpty()){
+        if(address.text.toString().trim().isEmpty()){
             layout_address.error="Address cannot be empty"
             flag=false
         }

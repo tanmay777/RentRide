@@ -37,8 +37,8 @@ class CreateAccountActivity : AppCompatActivity() {
 
         login_phone_number.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {
-                if (s.toString().length != 10) {
-                    layout_phone_number.error = "It should be 10 digits only"
+                if (s.toString().length > 10) {
+                    layout_phone_number.error = "It should be 10 digits"
                 }
                 else
                     layout_phone_number.error = null
