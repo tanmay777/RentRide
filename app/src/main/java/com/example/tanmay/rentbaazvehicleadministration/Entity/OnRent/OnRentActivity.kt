@@ -1,10 +1,12 @@
 package com.example.tanmay.rentbaazvehicleadministration.Entity.OnRent
 
+import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import com.bumptech.glide.Glide
+import com.example.tanmay.rentbaazvehicleadministration.Entity.Home.HomeActivity
 import com.example.tanmay.rentbaazvehicleadministration.Entity.Home.VehicleModel
 import com.example.tanmay.rentbaazvehicleadministration.Entity.Home.bookingModel
 import com.example.tanmay.rentbaazvehicleadministration.Entity.ToRent.RenteeModel
@@ -65,6 +67,22 @@ class OnRentActivity : AppCompatActivity() {
 
     override fun onStart() {
         super.onStart()
+
+        end_session_button.setOnClickListener {
+            onRentVehicleDocumentReference.get().addOnSuccessListener { it: DocumentSnapshot ->
+                vehicle = it.toObject(VehicleModel::class.java)
+                for (bookingModel in vehicle!!.booking) {
+                    if ((bookingModel.pickup_details.compareTo(Date()) > 0) &&
+                            (bookingModel.drop_details.compareTo(Date()) < 0))
+                    {
+                        vehicle!!.booking.remove(bookingModel)
+                        onRentVehicleDocumentReference.set(vehicle!!)
+                        startActivity(Intent(this@OnRentActivity,HomeActivity::class.java))
+                    }
+                }
+            }
+        }
+
         extend_time.setOnClickListener {
             if (extendTimeViewVisibile) {
                 extend_time_minus_sign.visibility = View.GONE

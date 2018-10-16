@@ -33,6 +33,7 @@ class AvailableFragment : Fragment() {
         super.onStart()
         loadAvailableVehilcle(true) //This true/false is to distinguish whether we have to load data from swipe down to refresh or normal load when fragment starts
         fragmentView.recycler_view_available_vehicle.layoutManager = LinearLayoutManager(fragmentView.context)
+        fragmentView.no_vehicle_available_text.visibility=View.GONE
         swipe_container.setOnRefreshListener {
                 loadAvailableVehilcle(false)
 
@@ -59,6 +60,10 @@ class AvailableFragment : Fragment() {
                         if(flag) {
                             availableVehicleList.add(availableVehicle)
                         }
+                    }
+                    if(availableVehicleList.isEmpty())
+                    {
+                        fragmentView.no_vehicle_available_text.visibility=View.VISIBLE
                     }
                     fragmentView.recycler_view_available_vehicle.adapter = AvailableVehicleAdapter(availableVehicleList, fragmentView.context)
                     if(flag)

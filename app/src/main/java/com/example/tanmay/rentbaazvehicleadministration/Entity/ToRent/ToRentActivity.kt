@@ -4,6 +4,7 @@ import android.app.DatePickerDialog
 import android.app.TimePickerDialog
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v7.widget.LinearLayoutManager
 import android.text.Editable
 import android.text.Html
 import android.text.TextWatcher
@@ -40,6 +41,7 @@ class ToRentActivity : AppCompatActivity() {
         setContentView(R.layout.activity_to_rent)
         supportActionBar!!.title = Html.fromHtml("<font color=\"#a9a9a9\">Rent Out</font>")
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
+        prebook_recycler_view.layoutManager=LinearLayoutManager(this)
 
         //TODO: Change color of up enabled button
         //TODO: Disable Keyboard Popping
@@ -280,15 +282,14 @@ class ToRentActivity : AppCompatActivity() {
         progressBar.visibility = View.VISIBLE
         val vehicleDocumentReference = FirebaseFirestore.getInstance().collection("vehicle").document(itemId)
         vehicleDocumentReference.get().addOnSuccessListener { it: DocumentSnapshot ->
-
             vehicle = it.toObject(VehicleModel::class.java)
-
             bike_name.text = it.get("vehicle_name").toString()
             Glide.with(this).load(it.get("vehicle_image_url")).into(bike_img)
             bike_number.text = it.get("vehicle_number").toString()
             bike_organization.text = it.get("vendor_organization").toString()
             cost_weekday.text = it.get("weekday_cost").toString()
             cost_weekend.text = it.get("weekend_cost").toString()
+            prebook_recycler_view.adapter=PrebookingAdapter(vehicle!!.booking,this)
             progressBar.visibility = View.GONE
         }
 

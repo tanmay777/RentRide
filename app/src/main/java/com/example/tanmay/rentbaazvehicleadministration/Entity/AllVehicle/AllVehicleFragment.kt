@@ -1,5 +1,6 @@
 package com.example.tanmay.rentbaazvehicleadministration.Entity.AllVehicle
 
+import android.opengl.Visibility
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
@@ -32,6 +33,7 @@ class AllVehicleFragment : Fragment() {
         super.onStart()
         loadAllVehilcle(true) //This true/false is to distinguish whether we have to load data from swipe down to refresh or normal load when fragment starts
         fragmentView.recycler_view_all_vehicle.layoutManager = LinearLayoutManager(fragmentView.context)
+        fragmentView.no_vehicle_uploaded_text.visibility=View.GONE
         swipe_container.setOnRefreshListener {
                 loadAllVehilcle(false)
         }
@@ -48,6 +50,9 @@ class AllVehicleFragment : Fragment() {
                         val allVehicle: VehicleModel = it.toObject(VehicleModel::class.java)
                         allVehicle.id = it.id
                         allVehicleList.add(allVehicle)
+                    }
+                    if(allVehicleList.isEmpty()){
+                        fragmentView.no_vehicle_uploaded_text.visibility=View.VISIBLE
                     }
                     fragmentView.recycler_view_all_vehicle.adapter = AllVehicleAdapter(allVehicleList, fragmentView.context)
                     if(flag)

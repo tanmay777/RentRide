@@ -35,6 +35,7 @@ class OnRentVehicleFragment : Fragment() {
         super.onStart()
         loadOnRentVehicle(true) //This true/false is to distinguish whether we have to load data from swipe down to refresh or normal load when fragment starts
         fragmentView.recycler_view_on_rent.layoutManager = LinearLayoutManager(fragmentView.context)
+        fragmentView.no_vehicle_on_rent_text.visibility=View.GONE
         swipe_container.setOnRefreshListener {
                 loadOnRentVehicle(false)
         }
@@ -60,6 +61,9 @@ class OnRentVehicleFragment : Fragment() {
                         if(flag) {
                             onRentVehicleList.add(onRentVehicle)
                         }
+                    }
+                    if(onRentVehicleList.isEmpty()){
+                        fragmentView.no_vehicle_on_rent_text.visibility=View.VISIBLE
                     }
                     fragmentView.recycler_view_on_rent.adapter = OnRentVehicleAdapter(onRentVehicleList, fragmentView.context)
                     if(flag)
