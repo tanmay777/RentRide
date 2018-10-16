@@ -42,6 +42,8 @@ class AddVehicleActivity : AppCompatActivity() {
         userDocumentReference = FirebaseFirestore.getInstance()
                 .document("users/" + pref.getString("phone_number", "0"))
         userDocumentReference.get().addOnSuccessListener {
+            val vehicleModel=it.toObject(VehicleModel::class.java)
+
             fullName = it.get("first_name").toString()+" "+ it.get("last_name").toString()
             organizationName = it.get("organization").toString()
         }
@@ -117,6 +119,7 @@ class AddVehicleActivity : AppCompatActivity() {
         super.onStart()
         button_submit.setOnClickListener {
             if (validate()) {
+
                 documentId = System.currentTimeMillis().toString()
                 val addVehicleAvailableModel = VehicleModel(
                         fullName,

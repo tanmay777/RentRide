@@ -157,20 +157,24 @@
             android:layout_height="wrap_content"
             app:layout_constraintTop_toBottomOf="@id/prebooking_text"
             android:layout_marginTop="10dp"
-            app:layout_constraintBottom_toTopOf="@id/view_all_text"
+            android:layout_marginBottom="10dp"
+            app:layout_constraintBottom_toTopOf="@id/expand_text"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent">
         </android.support.v7.widget.RecyclerView>
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="View All"
-            android:layout_marginTop="30dp"
+            android:text="Expand"
+            android:gravity="center"
+            android:padding="30dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             android:textSize="20sp"
-            android:id="@+id/view_all_text"
+            android:visibility="gone"
+            android:fontFamily="@font/proxima_nova_semibold"
+            android:id="@+id/expand_text"
             app:layout_constraintBottom_toTopOf="@id/session_view"
             app:layout_constraintTop_toBottomOf="@id/prebook_recycler_view"/>
 
@@ -178,10 +182,10 @@
             android:id="@+id/session_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="10dp"
             android:background="@drawable/rent_background"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/view_all_text">
+            app:layout_constraintTop_toBottomOf="@id/expand_text">
 
             <TextView
                 android:id="@+id/rent_out_text"

@@ -28,6 +28,7 @@ class OnRentActivity : AppCompatActivity() {
     var vehicle: VehicleModel? = null
     lateinit var renteeDetail: RenteeModel
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_on_rent)
@@ -45,8 +46,8 @@ class OnRentActivity : AppCompatActivity() {
             cost_weekend.text = vehicle?.weekend_cost
             Log.v("Vehicle_model", vehicle.toString())
             for (bookingModel in vehicle!!.booking) {
-                if ((bookingModel.pickup_details.compareTo(Date()) > 0) &&
-                        (bookingModel.drop_details.compareTo(Date()) < 0)) {
+                if ((bookingModel.pickup_details.compareTo(Date()) < 0) &&
+                        (bookingModel.drop_details.compareTo(Date()) > 0)) {
                     val myFormat = "dd/MM/yyyy" // mention the format you need
                     val simpleDateFormat = SimpleDateFormat(myFormat, Locale.US)
                     layout_pickup_date.text = simpleDateFormat.format(bookingModel.pickup_details)
@@ -67,13 +68,12 @@ class OnRentActivity : AppCompatActivity() {
 
     override fun onStart() {
         super.onStart()
-
         end_session_button.setOnClickListener {
             onRentVehicleDocumentReference.get().addOnSuccessListener { it: DocumentSnapshot ->
                 vehicle = it.toObject(VehicleModel::class.java)
                 for (bookingModel in vehicle!!.booking) {
-                    if ((bookingModel.pickup_details.compareTo(Date()) > 0) &&
-                            (bookingModel.drop_details.compareTo(Date()) < 0))
+                    if ((bookingModel.pickup_details.compareTo(Date()) < 0) &&
+                            (bookingModel.drop_details.compareTo(Date()) > 0))
                     {
                         vehicle!!.booking.remove(bookingModel)
                         onRentVehicleDocumentReference.set(vehicle!!)
@@ -128,7 +128,6 @@ class OnRentActivity : AppCompatActivity() {
                     extend_time_hours.text = (extend_time_hours.text.toString().toInt() - 1).toString()
             } else {
                 if ((extend_time_minutes.text.toString().toInt() - 15) < 0 && ((extend_time_hours.text.toString().toInt() - 1) >= 0)) {
-
                     extend_time_hours.text = (extend_time_hours.text.toString().toInt() - 1).toString()
                     extend_time_minutes.text = "45"
                 } else if ((extend_time_minutes.text.toString().toInt() - 15) < 0 && ((extend_time_hours.text.toString().toInt() - 1) < 0)) {

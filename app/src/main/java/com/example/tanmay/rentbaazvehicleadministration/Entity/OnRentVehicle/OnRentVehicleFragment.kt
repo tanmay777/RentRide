@@ -53,8 +53,8 @@ class OnRentVehicleFragment : Fragment() {
                         onRentVehicle.id=it.id
                         var flag=false
                         for (bookingModel in onRentVehicle.booking) {
-                            if ((bookingModel.pickup_details.compareTo(Date()) > 0) &&
-                                    (bookingModel.drop_details.compareTo(Date()) < 0)) {
+                            if ((bookingModel.pickup_details.compareTo(Date()) < 0) &&
+                                    (bookingModel.drop_details.compareTo(Date()) > 0)) {
                                 flag = true
                             }
                         }

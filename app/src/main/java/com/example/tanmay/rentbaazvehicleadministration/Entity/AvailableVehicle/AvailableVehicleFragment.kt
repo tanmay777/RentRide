@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.tanmay.rentbaazvehicleadministration.Entity.Home.VehicleModel
+import com.example.tanmay.rentbaazvehicleadministration.Entity.Home.bookingModel
 
 import com.example.tanmay.rentbaazvehicleadministration.R
 import com.google.firebase.firestore.*
@@ -52,8 +53,8 @@ class AvailableFragment : Fragment() {
                         availableVehicle.id=it.id
                         var flag=true
                         for (bookingModel in availableVehicle.booking) {
-                            if ((bookingModel.pickup_details.compareTo(Date()) > 0) &&
-                                    (bookingModel.drop_details.compareTo(Date()) < 0)) {
+                            if ((bookingModel.pickup_details.compareTo(Date()) < 0) &&
+                                    (bookingModel.drop_details.compareTo(Date()) > 0)) {
                                 flag = false
                             }
                         }
