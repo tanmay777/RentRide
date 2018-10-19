@@ -3,8 +3,10 @@ package com.example.tanmay.rentbaazvehicleadministration.Entity.OnRent
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.text.format.DateUtils
 import android.util.Log
 import android.view.View
+import android.widget.Toast
 import com.bumptech.glide.Glide
 import com.example.tanmay.rentbaazvehicleadministration.Entity.Home.HomeActivity
 import com.example.tanmay.rentbaazvehicleadministration.Entity.Home.VehicleModel
@@ -18,23 +20,54 @@ import kotlinx.android.synthetic.main.activity_on_rent.*
 import java.text.SimpleDateFormat
 import java.util.*
 
+
+
 class OnRentActivity : AppCompatActivity() {
 
     var hoursFlag: Boolean = true
     var extendTimeViewVisibile: Boolean = false
     lateinit var itemId: String
+    lateinit var renteePhoneNum: String
     lateinit var onRentVehicleDocumentReference: DocumentReference
-    var bookingList = mutableListOf<bookingModel>()
     var vehicle: VehicleModel? = null
-    lateinit var renteeDetail: RenteeModel
+    var bookingIndex:Int=0
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_on_rent)
+        if (intent.getStringExtra("item_id") == null) {
+            renteePhoneNum = intent.getStringExtra("phone_number")
+            FirebaseFirestore.getInstance().collection("rentee_details").document(renteePhoneNum).get().addOnSuccessListener {
+                    itemId=it.get("vehicle_id").toString()
+                vehicleUIInitiate()
+                }
+            }
+        else {
+            itemId = intent.getStringExtra("item_id")
+            vehicleUIInitiate()
+        }
 
-        itemId = intent.getStringExtra("item_id")
-        progressBar.visibility=View.VISIBLE
+        extend_time_done.setOnClickListener {
+            val cal = Calendar.getInstance() // creates calendar
+            cal.time = vehicle!!.booking[bookingIndex].drop_details// sets calendar time/date
+            cal.add(Calendar.HOUR_OF_DAY, extend_time_hours.text.toString().toInt()) // adds one hour
+            vehicle!!.booking[bookingIndex].drop_details=cal.time
+
+            cal.time = vehicle!!.booking[bookingIndex].drop_details// sets calendar time/date
+            cal.add(Calendar.MINUTE, extend_time_minutes.text.toString().toInt()) // adds one hour
+            vehicle!!.booking[bookingIndex].drop_details=cal.time
+
+            FirebaseFirestore.getInstance().collection("vehicle").document(itemId).set(vehicle!!).addOnSuccessListener {
+                Toast.makeText(applicationContext,"Updated",Toast.LENGTH_SHORT).show()
+                layout_return_time.text = SimpleDateFormat("HH:mm").format(cal.time)
+            }
+        }
+    }
+
+    fun vehicleUIInitiate(){
+
+        progressBar.visibility = View.VISIBLE
         onRentVehicleDocumentReference = FirebaseFirestore.getInstance().collection("vehicle").document(itemId)
         onRentVehicleDocumentReference.get().addOnSuccessListener { it: DocumentSnapshot ->
             vehicle = it.toObject(VehicleModel::class.java)
@@ -45,26 +78,43 @@ class OnRentActivity : AppCompatActivity() {
             cost_weekday.text = vehicle?.weekday_cost
             cost_weekend.text = vehicle?.weekend_cost
             Log.v("Vehicle_model", vehicle.toString())
-            for (bookingModel in vehicle!!.booking) {
-                if ((bookingModel.pickup_details.compareTo(Date()) < 0) &&
-                        (bookingModel.drop_details.compareTo(Date()) > 0)) {
-                    val myFormat = "dd/MM/yyyy" // mention the format you need
-                    val simpleDateFormat = SimpleDateFormat(myFormat, Locale.US)
-                    layout_pickup_date.text = simpleDateFormat.format(bookingModel.pickup_details)
-                    layout_pickup_time.text = SimpleDateFormat("HH:mm").format(bookingModel.pickup_details)
-                    layout_return_date.text = simpleDateFormat.format(bookingModel.drop_details)
-                    layout_return_time.text = SimpleDateFormat("HH:mm").format(bookingModel.drop_details)
-                    FirebaseFirestore.getInstance().collection("rentee_details").document(bookingModel.phone_num).get().addOnSuccessListener {
-                        val fullName = it.get("first_name").toString() + " " + it.get("last_name").toString()
-                        layout_first_name.text = fullName
-                        layout_registration_number.text = it.get("registration_number").toString()
-                        layout_contact_number.text = it.get("phone_number").toString()
+            if (intent.getStringExtra("item_id") != null) {
+                for (bookingModel in vehicle!!.booking) {
+                    if ((bookingModel.pickup_details.compareTo(Date()) < 0) &&
+                            (bookingModel.drop_details.compareTo(Date()) > 0)) {
+                        bookingIndex++
+                        val myFormat = "dd MMM" // mention the format you need
+                        val simpleDateFormat = SimpleDateFormat(myFormat, Locale.US)
+                        layout_pickup_date.text = simpleDateFormat.format(bookingModel.pickup_details)
+                        layout_pickup_time.text = SimpleDateFormat("HH:mm").format(bookingModel.pickup_details)
+                        layout_return_date.text = simpleDateFormat.format(bookingModel.drop_details)
+                        layout_return_time.text = SimpleDateFormat("HH:mm").format(bookingModel.drop_details)
+                        FirebaseFirestore.getInstance().collection("rentee_details").document(bookingModel.phone_num).get().addOnSuccessListener {
+                            val fullName = it.get("first_name").toString() + " " + it.get("last_name").toString()
+                            layout_first_name.text = fullName
+                            layout_registration_number.text = it.get("registration_number").toString()
+                            layout_contact_number.text = it.get("phone_number").toString()
+                        }
                     }
                 }
+            } else {
+                layout_pickup_date.text = intent.getStringExtra("pick_up_date")
+                layout_pickup_time.text = intent.getStringExtra("pick_up_time")
+                layout_return_date.text = intent.getStringExtra("drop_date")
+                layout_return_time.text = intent.getStringExtra("drop_time")
+                FirebaseFirestore.getInstance().collection("rentee_details").document(renteePhoneNum).get().addOnSuccessListener {
+                    val fullName = it.get("first_name").toString() + " " + it.get("last_name").toString()
+                    layout_first_name.text = fullName
+                    layout_registration_number.text = it.get("registration_number").toString()
+                    layout_contact_number.text = it.get("phone_number").toString()
+                }
             }
-            progressBar.visibility=View.GONE
+            progressBar.visibility = View.GONE
         }
+
+
     }
+
 
     override fun onStart() {
         super.onStart()
@@ -73,11 +123,10 @@ class OnRentActivity : AppCompatActivity() {
                 vehicle = it.toObject(VehicleModel::class.java)
                 for (bookingModel in vehicle!!.booking) {
                     if ((bookingModel.pickup_details.compareTo(Date()) < 0) &&
-                            (bookingModel.drop_details.compareTo(Date()) > 0))
-                    {
+                            (bookingModel.drop_details.compareTo(Date()) > 0)) {
                         vehicle!!.booking.remove(bookingModel)
                         onRentVehicleDocumentReference.set(vehicle!!)
-                        startActivity(Intent(this@OnRentActivity,HomeActivity::class.java))
+                        startActivity(Intent(this@OnRentActivity, HomeActivity::class.java))
                     }
                 }
             }
@@ -91,6 +140,7 @@ class OnRentActivity : AppCompatActivity() {
                 extend_time_minutes.visibility = View.GONE
                 extend_time_plus_sign.visibility = View.GONE
                 extend_time_hours_text.visibility = View.GONE
+                extend_time_done.visibility=View.GONE
                 extendTimeViewVisibile = false
             } else {
                 extend_time_minus_sign.visibility = View.VISIBLE
@@ -99,11 +149,13 @@ class OnRentActivity : AppCompatActivity() {
                 extend_time_minutes.visibility = View.VISIBLE
                 extend_time_plus_sign.visibility = View.VISIBLE
                 extend_time_hours_text.visibility = View.VISIBLE
+                extend_time_done.visibility=View.VISIBLE
                 extendTimeViewVisibile = true
             }
         }
 
-
+        //TODO: Solve Done Button flickering
+        
         extend_time_plus_sign.setOnClickListener {
             if (hoursFlag) {
                 if ((extend_time_hours.text.toString().toInt() + 1) >= 24) {
@@ -145,6 +197,7 @@ class OnRentActivity : AppCompatActivity() {
             hoursFlag = false
         }
     }
+
 }
 
 //TODO: Add prebookings in the xml file

@@ -39,7 +39,7 @@ class ToRentActivity : AppCompatActivity() {
     var vehicle: VehicleModel? = null
     lateinit var vehicleUpdated: VehicleModel
     var cal = Calendar.getInstance()
-    var bookingList: MutableList<bookingModel> = mutableListOf<bookingModel>()
+
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -310,11 +310,16 @@ class ToRentActivity : AppCompatActivity() {
             cost_weekday.text = it.get("weekday_cost").toString()
             cost_weekend.text = it.get("weekend_cost").toString()
             prebook_recycler_view.adapter = PrebookingAdapter(vehicle!!.booking, this)
+            vehicle!!.booking.removeAt(0)
             if (vehicle!!.booking.size > 3) {
                 var pixels = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 245f, getResources().getDisplayMetrics());
                 prebook_recycler_view.layoutParams.height = pixels.toInt()
                 prebook_recycler_view.requestLayout()
                 expand_text.visibility = View.VISIBLE
+            }
+            if(vehicle!!.booking.isEmpty())
+            {
+                prebooking_text.text="No Pre-Booking"
             }
             progressBar.visibility = View.GONE
         }
@@ -342,7 +347,7 @@ class ToRentActivity : AppCompatActivity() {
                     rootRef.collection("rentee_details").document(number.text.toString()).set(RenteeModel(first_name.text.toString(),
                             last_name.text.toString(),
                             number.text.toString(),
-                            registration_number.text.toString()))
+                            registration_number.text.toString(),itemId))
 
                     startActivity(Intent(this@ToRentActivity, HomeActivity::class.java))
                 } else {

@@ -7,7 +7,6 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.bumptech.glide.Glide
 import com.example.tanmay.rentbaazvehicleadministration.Entity.Home.bookingModel
 import com.example.tanmay.rentbaazvehicleadministration.Entity.OnRent.OnRentActivity
 import com.example.tanmay.rentbaazvehicleadministration.R
@@ -27,14 +26,22 @@ class PrebookingAdapter(val bookingList: MutableList<bookingModel>, val context:
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.pick_up_detail.text = SimpleDateFormat("dd MMM", Locale.US).format(bookingList.get(position).pickup_details)+", "+SimpleDateFormat("HH:mm").format(bookingList.get(position).drop_details)
-        holder.drop_detail.text = SimpleDateFormat("dd MMM", Locale.US).format(bookingList.get(position).drop_details)+", "+SimpleDateFormat("HH:mm").format(bookingList.get(position).pickup_details)
+        val pick_up_date=SimpleDateFormat("dd MMM", Locale.US).format(bookingList.get(position).pickup_details)
+        val pick_up_time=SimpleDateFormat("HH:mm", Locale.US).format(bookingList.get(position).drop_details)
+        val drop_date=SimpleDateFormat("dd MMM", Locale.US).format(bookingList.get(position).drop_details)
+        val drop_time=SimpleDateFormat("HH:mm", Locale.US).format(bookingList.get(position).pickup_details)
+        val pick_detail=pick_up_date+", "+pick_up_time
+        val drop_detail=drop_date+", "+drop_time
+        holder.pick_up_detail.text = pick_detail
+        holder.drop_detail.text = drop_detail
         holder.view_holder.setOnClickListener {
-            /*
             val intent = Intent(context, OnRentActivity::class.java)
-            intent.putExtra("item_id", bookingList.get(position).id)
+            intent.putExtra("phone_number", bookingList.get(position).phone_num)
+            intent.putExtra("pick_up_date",pick_up_date)
+            intent.putExtra("pick_up_time",pick_up_time)
+            intent.putExtra("drop_date",drop_date)
+            intent.putExtra("drop_time",drop_time)
             startActivity(context,intent,null)
-            */
         }
         holder.right_arrow.setOnClickListener{
 
