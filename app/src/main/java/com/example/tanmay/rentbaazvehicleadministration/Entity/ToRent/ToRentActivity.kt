@@ -45,12 +45,9 @@ class ToRentActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_to_rent)
-        supportActionBar!!.title = Html.fromHtml("<font color=\"#a9a9a9\">Rent Out</font>")
-        supportActionBar!!.setDisplayHomeAsUpEnabled(true)
         prebook_recycler_view.layoutManager = LinearLayoutManager(this)
-
-        //TODO: Change color of up enabled button
-        //TODO: Disable Keyboard Popping
+        supportActionBar!!.title = Html.fromHtml("<font color=\"#a9a9a9\">On Rent</font>")
+        supportActionBar!!.setDisplayHomeAsUpEnabled(true)
 
         expand_text.setOnClickListener {
             if (prebook_recycler_view.layoutParams.height != ViewGroup.LayoutParams.WRAP_CONTENT) {
@@ -307,10 +304,11 @@ class ToRentActivity : AppCompatActivity() {
             Glide.with(this).load(it.get("vehicle_image_url")).into(bike_img)
             bike_number.text = it.get("vehicle_number").toString()
             bike_organization.text = it.get("vendor_organization").toString()
-            cost_weekday.text = it.get("weekday_cost").toString()
-            cost_weekend.text = it.get("weekend_cost").toString()
+            cost_weekday.text = "Rs "+it.get("weekday_cost").toString()+"\\hr"
+            cost_weekend.text = "Rs "+it.get("weekend_cost").toString()+"\\hr"
             prebook_recycler_view.adapter = PrebookingAdapter(vehicle!!.booking, this)
-            vehicle!!.booking.removeAt(0)
+            if(vehicle!!.booking.isNotEmpty())
+                vehicle!!.booking.removeAt(0)
             if (vehicle!!.booking.size > 3) {
                 var pixels = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 245f, getResources().getDisplayMetrics());
                 prebook_recycler_view.layoutParams.height = pixels.toInt()

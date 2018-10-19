@@ -22,7 +22,7 @@
             android:layout_height="?attr/actionBarSize"
             android:background="?attr/colorPrimary"
             android:layout_weight="1"
-            app:popupTheme="@style/AppTheme.PopupOverlay"
+            app:theme="@style/ThemeOverlay.AppCompat.Light"
             app:title="@string/app_name"/>
 
 

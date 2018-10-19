@@ -29,8 +29,8 @@ class AvailableVehicleAdapter (val availableVehicleList:ArrayList<VehicleModel>,
         holder.bike_number.text = availableVehicleList.get(position).vehicle_number
         Glide.with(context).load(availableVehicleList.get(position).vehicle_image_url).into(holder.bike_img)
         holder.bike_vendor_organization.text = availableVehicleList.get(position).vendor_organization
-        holder.cost_weekday.text = availableVehicleList.get(position).weekday_cost
-        holder.cost_weekend.text = availableVehicleList.get(position).weekend_cost
+        holder.cost_weekday.text = "Rs "+availableVehicleList.get(position).weekday_cost+"\\hr"
+        holder.cost_weekend.text = "Rs "+availableVehicleList.get(position).weekend_cost+"\\hr"
         holder.view_holder.setOnClickListener {
             val intent = Intent(context, ToRentActivity::class.java)
             intent.putExtra("item_id", availableVehicleList.get(position).id)

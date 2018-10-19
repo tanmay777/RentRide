@@ -30,8 +30,8 @@ class OnRentVehicleAdapter (val onRentVehicleList:ArrayList<VehicleModel>, val c
         holder.bike_number.text = onRentVehicleList.get(position).vehicle_number
         Glide.with(context).load(onRentVehicleList.get(position).vehicle_image_url).into(holder.bike_img)
         holder.bike_vendor_organization.text = onRentVehicleList.get(position).vendor_organization
-        holder.cost_weekday.text = onRentVehicleList.get(position).weekday_cost
-        holder.cost_weekend.text = onRentVehicleList.get(position).weekend_cost
+        holder.cost_weekday.text = "Rs "+onRentVehicleList.get(position).weekday_cost+"\\hr"
+        holder.cost_weekend.text = "Rs "+onRentVehicleList.get(position).weekend_cost+"\\hr"
         holder.view_holder.setOnClickListener {
             val intent = Intent(context, OnRentActivity::class.java)
             intent.putExtra("item_id", onRentVehicleList.get(position).id)
